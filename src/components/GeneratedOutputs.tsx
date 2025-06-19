@@ -110,7 +110,7 @@ export function GeneratedOutputs() {
       </div>
 
       <Tabs defaultValue="files" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 glass-effect">
+        <TabsList className="grid w-full grid-cols-3 card-gradient">
           <TabsTrigger value="files" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">File Browser</TabsTrigger>
           <TabsTrigger value="preview" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Content Preview</TabsTrigger>
           <TabsTrigger value="analytics" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Download Analytics</TabsTrigger>
@@ -119,7 +119,7 @@ export function GeneratedOutputs() {
         <TabsContent value="files" className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
             {filteredReports.map((report) => (
-              <Card key={report.id} className="glass-effect hover:bg-white/10 transition-all border-white/10">
+              <Card key={report.id} className="card-gradient hover:bg-white/10 transition-all border-white/10">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
@@ -160,12 +160,12 @@ export function GeneratedOutputs() {
         </TabsContent>
 
         <TabsContent value="preview" className="space-y-6">
-          <Card className="glass-effect border-white/10">
+          <Card className="card-gradient">
             <CardHeader>
               <CardTitle className="text-white">ab_test_conversation.txt</CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-96 glass-effect p-4 rounded-lg border-white/10">
+              <ScrollArea className="h-96 card-gradient p-4 rounded-lg border-white/10">
                 <div className="font-mono text-sm space-y-2">
                   <div className="text-blue-400">[2024-06-19 10:15:23] User: I want to start a new A/B test for our landing page</div>
                   <div className="text-emerald-400">[2024-06-19 10:15:24] Assistant: I'll help you set up an A/B test. What's the main goal of this test?</div>
@@ -189,7 +189,7 @@ export function GeneratedOutputs() {
 
         <TabsContent value="analytics" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white text-sm">Total Downloads</CardTitle>
               </CardHeader>
@@ -199,7 +199,7 @@ export function GeneratedOutputs() {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white text-sm">Most Downloaded</CardTitle>
               </CardHeader>
@@ -209,7 +209,7 @@ export function GeneratedOutputs() {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white text-sm">Storage Used</CardTitle>
               </CardHeader>
@@ -220,7 +220,7 @@ export function GeneratedOutputs() {
             </Card>
           </div>
 
-          <Card className="glass-effect border-white/10">
+          <Card className="card-gradient">
             <CardHeader>
               <CardTitle className="text-white">Recent Download Activity</CardTitle>
             </CardHeader>
@@ -232,7 +232,7 @@ export function GeneratedOutputs() {
                   { file: "run_report.csv", time: "6 hours ago", user: "Operations Team" },
                   { file: "conversation_summary.txt", time: "8 hours ago", user: "Product Team" },
                 ].map((activity, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 glass-effect rounded-lg border-white/10">
+                  <div key={index} className="flex items-center justify-between p-3 card-gradient rounded-lg border-white/10">
                     <div>
                       <p className="font-medium text-white">{activity.file}</p>
                       <p className="text-sm text-white/65">Downloaded by {activity.user}</p>

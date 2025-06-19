@@ -65,7 +65,7 @@ export function SystemMonitoring() {
 
       {/* System Status Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <CardTitle className="text-green-300 text-sm font-medium flex items-center">
               <Server className="w-4 h-4 mr-2" />
@@ -78,7 +78,7 @@ export function SystemMonitoring() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <CardTitle className="text-blue-300 text-sm font-medium flex items-center">
               <Activity className="w-4 h-4 mr-2" />
@@ -91,7 +91,7 @@ export function SystemMonitoring() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <CardTitle className="text-purple-300 text-sm font-medium flex items-center">
               <Database className="w-4 h-4 mr-2" />
@@ -104,7 +104,7 @@ export function SystemMonitoring() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <CardTitle className="text-orange-300 text-sm font-medium flex items-center">
               <Wifi className="w-4 h-4 mr-2" />
@@ -119,7 +119,7 @@ export function SystemMonitoring() {
       </div>
 
       <Tabs defaultValue="metrics" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 glass-effect border-white/10">
+        <TabsList className="grid w-full grid-cols-3 card-gradient border-white/10">
           <TabsTrigger value="metrics" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Performance Metrics</TabsTrigger>
           <TabsTrigger value="logs" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">System Logs</TabsTrigger>
           <TabsTrigger value="alerts" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Alerts & Notifications</TabsTrigger>
@@ -127,7 +127,7 @@ export function SystemMonitoring() {
 
         <TabsContent value="metrics" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white">System Resources</CardTitle>
               </CardHeader>
@@ -153,7 +153,7 @@ export function SystemMonitoring() {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white">Disk Usage Trend</CardTitle>
               </CardHeader>
@@ -178,7 +178,7 @@ export function SystemMonitoring() {
             </Card>
           </div>
 
-          <Card className="glass-effect border-white/10">
+          <Card className="card-gradient">
             <CardHeader>
               <CardTitle className="text-white">Service Health Checks</CardTitle>
             </CardHeader>
@@ -192,7 +192,7 @@ export function SystemMonitoring() {
                   { service: "File Storage", status: "warning", response: "< 200ms" },
                   { service: "Analytics Engine", status: "healthy", response: "< 150ms" },
                 ].map((service) => (
-                  <div key={service.service} className="p-4 bg-white/5 border border-white/10 rounded-lg">
+                  <div key={service.service} className="p-4 card-gradient border border-white/10 rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-white">{service.service}</h4>
                       <Badge 
@@ -214,7 +214,7 @@ export function SystemMonitoring() {
         </TabsContent>
 
         <TabsContent value="logs" className="space-y-6">
-          <Card className="glass-effect border-white/10">
+          <Card className="card-gradient">
             <CardHeader>
               <CardTitle className="text-white flex items-center">
                 <Clock className="w-5 h-5 mr-2" />
@@ -225,7 +225,7 @@ export function SystemMonitoring() {
               <ScrollArea className="h-96">
                 <div className="space-y-2">
                   {errorLogs.map((log, index) => (
-                    <div key={index} className="p-3 bg-white/5 rounded-lg border-l-4 border-white/20">
+                    <div key={index} className="p-3 card-gradient rounded-lg border-l-4 border-white/20">
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center space-x-2">
                           <Badge className={getLogLevelColor(log.level)}>
@@ -246,7 +246,7 @@ export function SystemMonitoring() {
 
         <TabsContent value="alerts" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <AlertTriangle className="w-5 h-5 mr-2 text-yellow-400" />
@@ -274,7 +274,7 @@ export function SystemMonitoring() {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-white/10">
+            <Card className="card-gradient">
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
@@ -283,7 +283,7 @@ export function SystemMonitoring() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="p-3 bg-white/5 border border-white/10 rounded-lg opacity-75">
+                  <div className="p-3 card-gradient border border-white/10 rounded-lg opacity-75">
                     <div className="flex items-center justify-between mb-1">
                       <h4 className="font-medium text-white/70">Database Connection Issue</h4>
                       <Badge className="bg-white/10 text-white/60 border border-white/20">Resolved</Badge>
@@ -291,7 +291,7 @@ export function SystemMonitoring() {
                     <p className="text-sm text-white/60">Connection restored after retry attempts</p>
                   </div>
                   
-                  <div className="p-3 bg-white/5 border border-white/10 rounded-lg opacity-75">
+                  <div className="p-3 card-gradient border border-white/10 rounded-lg opacity-75">
                     <div className="flex items-center justify-between mb-1">
                       <h4 className="font-medium text-white/70">Task Processing Delay</h4>
                       <Badge className="bg-white/10 text-white/60 border border-white/20">Resolved</Badge>
