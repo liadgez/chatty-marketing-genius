@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,10 +90,10 @@ export function ChatInterface() {
 
   const getCategoryColor = (category?: string) => {
     switch (category) {
-      case "task": return "bg-blue-100 text-blue-800";
-      case "anomaly": return "bg-red-100 text-red-800";
-      case "system": return "bg-green-100 text-green-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "task": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+      case "anomaly": return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200";
+      case "system": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+      default: return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
     }
   };
 
@@ -105,14 +104,14 @@ export function ChatInterface() {
   }, [messages]);
 
   return (
-    <div className="h-full flex flex-col bg-white">
+    <div className="h-full flex flex-col bg-card">
       {/* Chat Header */}
-      <div className="p-4 border-b border-slate-200 bg-slate-50">
-        <h3 className="font-semibold text-slate-800 flex items-center">
+      <div className="p-4 border-b border-border bg-muted/50">
+        <h3 className="font-semibold text-foreground flex items-center">
           <Bot className="w-5 h-5 mr-2 text-blue-600" />
           AI Assistant
         </h3>
-        <p className="text-sm text-slate-600">Natural language interface for all operations</p>
+        <p className="text-sm text-muted-foreground">Natural language interface for all operations</p>
       </div>
 
       {/* Messages */}
@@ -126,8 +125,8 @@ export function ChatInterface() {
               <div
                 className={`max-w-[80%] p-3 rounded-lg ${
                   message.type === "user"
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 text-slate-800"
+                    ? "bg-blue-600 text-white dark:bg-blue-700"
+                    : "bg-muted text-foreground"
                 }`}
               >
                 <div className="flex items-center mb-1">
@@ -153,7 +152,7 @@ export function ChatInterface() {
       </ScrollArea>
 
       {/* Input */}
-      <div className="p-4 border-t border-slate-200">
+      <div className="p-4 border-t border-border">
         <div className="flex space-x-2">
           <Input
             value={input}
@@ -162,11 +161,11 @@ export function ChatInterface() {
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
             className="flex-1"
           />
-          <Button onClick={handleSendMessage} size="icon" className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleSendMessage} size="icon" className="bg-blue-600 hover:bg-blue-700 text-white">
             <Send className="w-4 h-4" />
           </Button>
         </div>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Try: "Start new A/B test", "Check for anomalies", "System status"
         </p>
       </div>
