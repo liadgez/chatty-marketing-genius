@@ -18,7 +18,7 @@ export function ChatSidebar() {
       </SidebarHeader>
       
       <SidebarContent className="p-4">
-        {/* Content area is intentionally empty */}
+        {/* Completely empty content area */}
       </SidebarContent>
     </Sidebar>
   );
