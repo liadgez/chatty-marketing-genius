@@ -74,24 +74,24 @@ const Index = () => {
         <div className="flex-1 flex flex-col">
           {/* Header */}
           <header className="h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
-            <SidebarTrigger className="mr-4 text-foreground hover:bg-white/10 hover:text-blue-400 transition-colors" />
+            <SidebarTrigger className="mr-4 text-white hover:bg-white/10 hover:text-blue-400 transition-colors" />
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 TerrificMarketingAI
               </h1>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-white/65">
                 / {getSectionTitle()}
               </div>
             </div>
             <div className="ml-auto flex items-center space-x-6">
               <div className="flex items-center space-x-4">
                 <div className="text-right">
-                  <div className="text-sm font-medium text-foreground">24 Active Tests</div>
-                  <div className="text-xs text-muted-foreground">4.2x Avg ROAS</div>
+                  <div className="text-sm font-medium text-white">24 Active Tests</div>
+                  <div className="text-xs text-white/65">4.2x Avg ROAS</div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50"></div>
-                  <span className="text-sm text-muted-foreground font-medium">System Active</span>
+                  <span className="text-sm text-white/75 font-medium">System Active</span>
                 </div>
               </div>
               <ThemeToggle />

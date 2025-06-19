@@ -45,7 +45,7 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
     <Sidebar className="border-r border-white/10 glass-effect">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-muted-foreground font-semibold text-xs uppercase tracking-wider px-3 py-4">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-3 py-4">
             Marketing Analytics
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -54,7 +54,7 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     onClick={() => setActiveSection(item.id)}
-                    className={`w-full justify-start text-muted-foreground hover:text-foreground hover:bg-white/10 transition-all duration-200 rounded-lg mx-2 group ${
+                    className={`w-full justify-start text-white/75 hover:text-white hover:bg-white/10 transition-all duration-200 rounded-lg mx-2 group ${
                       activeSection === item.id
                         ? "bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-blue-400 font-medium border border-blue-500/20 shadow-lg shadow-blue-500/10"
                         : ""
@@ -64,7 +64,7 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
                     {state !== "collapsed" && (
                       <div className="flex flex-col items-start">
                         <span className="font-medium">{item.title}</span>
-                        <span className="text-xs text-muted-foreground group-hover:text-muted-foreground/80">
+                        <span className="text-xs text-white/50 group-hover:text-white/65">
                           {item.description}
                         </span>
                       </div>
@@ -77,7 +77,7 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
         </SidebarGroup>
 
         <SidebarGroup className="mt-8">
-          <SidebarGroupLabel className="text-muted-foreground font-semibold text-xs uppercase tracking-wider px-3 py-4">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-3 py-4">
             System Status
           </SidebarGroupLabel>
           <SidebarGroupContent>

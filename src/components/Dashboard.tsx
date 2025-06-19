@@ -43,10 +43,10 @@ export function Dashboard() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             Marketing Analytics
           </h1>
-          <p className="text-muted-foreground mt-2">Monitor your A/B tests and campaign performance</p>
+          <p className="text-white/75 mt-2">Monitor your A/B tests and campaign performance</p>
         </div>
         <div className="flex space-x-3">
-          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
             Create New Test
           </Button>
           <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/20 px-4 py-2">
@@ -61,12 +61,12 @@ export function Dashboard() {
         <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Total Experiments</CardTitle>
+              <CardTitle className="text-sm font-medium text-white/75">Total Experiments</CardTitle>
               <Target className="h-5 w-5 text-blue-400" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">156</div>
+            <div className="text-3xl font-bold text-white">156</div>
             <div className="flex items-center text-sm text-green-400 mt-1">
               <TrendingUp className="h-4 w-4 mr-1" />
               +12% from last month
@@ -77,26 +77,26 @@ export function Dashboard() {
         <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Active Tests</CardTitle>
+              <CardTitle className="text-sm font-medium text-white/75">Active Tests</CardTitle>
               <Play className="h-5 w-5 text-emerald-400" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">24</div>
+            <div className="text-3xl font-bold text-white">24</div>
             <Progress value={75} className="mt-3 h-2 bg-muted" />
-            <p className="text-xs text-muted-foreground mt-2">75% of capacity</p>
+            <p className="text-xs text-white/65 mt-2">75% of capacity</p>
           </CardContent>
         </Card>
 
         <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Avg ROAS</CardTitle>
+              <CardTitle className="text-sm font-medium text-white/75">Avg ROAS</CardTitle>
               <DollarSign className="h-5 w-5 text-yellow-400" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">4.2x</div>
+            <div className="text-3xl font-bold text-white">4.2x</div>
             <p className="text-sm text-yellow-400 mt-1">Excellent performance</p>
           </CardContent>
         </Card>
@@ -104,12 +104,12 @@ export function Dashboard() {
         <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-muted-foreground">Completed Tests</CardTitle>
+              <CardTitle className="text-sm font-medium text-white/75">Completed Tests</CardTitle>
               <CheckCircle className="h-5 w-5 text-purple-400" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-foreground">132</div>
+            <div className="text-3xl font-bold text-white">132</div>
             <p className="text-sm text-purple-400 mt-1">87% success rate</p>
           </CardContent>
         </Card>
@@ -119,7 +119,7 @@ export function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="glass-effect border-white/10">
           <CardHeader>
-            <CardTitle className="text-foreground flex items-center">
+            <CardTitle className="text-white flex items-center">
               <BarChart className="h-5 w-5 mr-2 text-blue-400" />
               A/B Test Performance
             </CardTitle>
@@ -128,14 +128,14 @@ export function Dashboard() {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={performanceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="name" stroke="#94a3b8" />
-                <YAxis stroke="#94a3b8" />
+                <XAxis dataKey="name" stroke="#ffffff" />
+                <YAxis stroke="#ffffff" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.9)', 
                     border: '1px solid rgba(255,255,255,0.1)',
                     borderRadius: '12px',
-                    color: '#f8fafc'
+                    color: '#ffffff'
                   }} 
                 />
                 <Bar dataKey="ctr" fill="#3b82f6" name="CTR %" />
@@ -147,7 +147,7 @@ export function Dashboard() {
 
         <Card className="glass-effect border-white/10">
           <CardHeader>
-            <CardTitle className="text-foreground flex items-center">
+            <CardTitle className="text-white flex items-center">
               <TrendingUp className="h-5 w-5 mr-2 text-emerald-400" />
               Real-time Conversions
             </CardTitle>
@@ -156,14 +156,14 @@ export function Dashboard() {
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={conversionData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                <XAxis dataKey="time" stroke="#94a3b8" />
-                <YAxis stroke="#94a3b8" />
+                <XAxis dataKey="time" stroke="#ffffff" />
+                <YAxis stroke="#ffffff" />
                 <Tooltip 
                   contentStyle={{ 
                     backgroundColor: 'rgba(15, 23, 42, 0.9)', 
                     border: '1px solid rgba(255,255,255,0.1)',
                     borderRadius: '12px',
-                    color: '#f8fafc'
+                    color: '#ffffff'
                   }} 
                 />
                 <Area type="monotone" dataKey="conversions" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
@@ -177,12 +177,12 @@ export function Dashboard() {
       {/* Active Experiments */}
       <Card className="glass-effect border-white/10">
         <CardHeader>
-          <CardTitle className="text-foreground flex items-center justify-between">
+          <CardTitle className="text-white flex items-center justify-between">
             <span className="flex items-center">
               <Target className="h-5 w-5 mr-2 text-blue-400" />
               Active Experiments
             </span>
-            <Button variant="outline" size="sm" className="border-white/10 hover:bg-white/5">
+            <Button variant="outline" size="sm" className="border-white/10 hover:bg-white/5 text-white">
               View All
             </Button>
           </CardTitle>
@@ -226,7 +226,7 @@ export function Dashboard() {
               <div key={experiment.id} className="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <div className="flex-1">
                   <div className="flex items-center space-x-3">
-                    <h4 className="font-medium text-foreground">{experiment.name}</h4>
+                    <h4 className="font-medium text-white">{experiment.name}</h4>
                     <Badge
                       variant="outline"
                       className={
@@ -240,7 +240,7 @@ export function Dashboard() {
                       {experiment.status}
                     </Badge>
                   </div>
-                  <div className="mt-2 flex items-center space-x-4 text-sm text-muted-foreground">
+                  <div className="mt-2 flex items-center space-x-4 text-sm text-white/65">
                     <span>{experiment.metric}</span>
                     <span>•</span>
                     <span>{experiment.timeLeft}</span>
@@ -249,7 +249,7 @@ export function Dashboard() {
                     <Progress value={experiment.progress} className="mt-3 h-2 bg-muted" />
                   )}
                 </div>
-                <Button variant="ghost" size="sm" className="hover:bg-white/10">
+                <Button variant="ghost" size="sm" className="hover:bg-white/10 text-white">
                   View Details
                 </Button>
               </div>

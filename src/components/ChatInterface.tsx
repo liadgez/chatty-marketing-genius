@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -107,11 +108,11 @@ export function ChatInterface() {
     <div className="h-full flex flex-col">
       {/* Chat Header */}
       <div className="p-6 border-b border-white/10 glass-effect">
-        <h3 className="font-semibold text-foreground flex items-center text-lg">
+        <h3 className="font-semibold text-white flex items-center text-lg">
           <Bot className="w-6 h-6 mr-3 text-blue-400" />
           AI Assistant
         </h3>
-        <p className="text-sm text-muted-foreground mt-1">Natural language interface for all operations</p>
+        <p className="text-sm text-white/65 mt-1">Natural language interface for all operations</p>
       </div>
 
       {/* Messages */}
@@ -126,7 +127,7 @@ export function ChatInterface() {
                 className={`max-w-[80%] p-4 rounded-2xl ${
                   message.type === "user"
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25"
-                    : "glass-effect text-foreground"
+                    : "glass-effect text-white"
                 }`}
               >
                 <div className="flex items-center mb-2">
@@ -159,7 +160,7 @@ export function ChatInterface() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask me to configure tasks, check status, or analyze data..."
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-            className="flex-1 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-background/50"
+            className="flex-1 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-background/50 text-white placeholder:text-white/50"
           />
           <Button 
             onClick={handleSendMessage} 
@@ -169,7 +170,7 @@ export function ChatInterface() {
             <Send className="w-4 h-4" />
           </Button>
         </div>
-        <p className="text-xs text-muted-foreground mt-3 font-medium">
+        <p className="text-xs text-white/65 mt-3 font-medium">
           Try: "Start new A/B test", "Check for anomalies", "System status"
         </p>
       </div>

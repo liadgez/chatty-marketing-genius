@@ -126,9 +126,9 @@ export function ABTestManagement() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             A/B Testing
           </h1>
-          <p className="text-muted-foreground mt-2">Manage and monitor your marketing experiments</p>
+          <p className="text-white/75 mt-2">Manage and monitor your marketing experiments</p>
         </div>
-        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+        <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
           <Plus className="h-4 w-4 mr-2" />
           Create New Test
         </Button>
@@ -143,8 +143,8 @@ export function ABTestManagement() {
                 <Target className="h-6 w-6 text-blue-400" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Total Tests</p>
-                <p className="text-2xl font-bold text-foreground">{experiments.length}</p>
+                <p className="text-sm text-white/75">Total Tests</p>
+                <p className="text-2xl font-bold text-white">{experiments.length}</p>
               </div>
             </div>
           </CardContent>
@@ -157,8 +157,8 @@ export function ABTestManagement() {
                 <Play className="h-6 w-6 text-green-400" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Running</p>
-                <p className="text-2xl font-bold text-foreground">
+                <p className="text-sm text-white/75">Running</p>
+                <p className="text-2xl font-bold text-white">
                   {experiments.filter(e => e.status === 'running').length}
                 </p>
               </div>
@@ -173,8 +173,8 @@ export function ABTestManagement() {
                 <Users className="h-6 w-6 text-yellow-400" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Total Traffic</p>
-                <p className="text-2xl font-bold text-foreground">
+                <p className="text-sm text-white/75">Total Traffic</p>
+                <p className="text-2xl font-bold text-white">
                   {experiments.reduce((sum, exp) => sum + exp.traffic, 0).toLocaleString()}
                 </p>
               </div>
@@ -189,8 +189,8 @@ export function ABTestManagement() {
                 <TrendingUp className="h-6 w-6 text-purple-400" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Avg Lift</p>
-                <p className="text-2xl font-bold text-foreground">+18.5%</p>
+                <p className="text-sm text-white/75">Avg Lift</p>
+                <p className="text-2xl font-bold text-white">+18.5%</p>
               </div>
             </div>
           </CardContent>
@@ -200,12 +200,12 @@ export function ABTestManagement() {
       {/* Filters and Search */}
       <div className="flex items-center space-x-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-3 h-4 w-4 text-white/65" />
           <Input
             placeholder="Search experiments..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-white/5 border-white/10 focus:border-blue-500/50"
+            className="pl-10 bg-white/5 border-white/10 focus:border-blue-500/50 text-white placeholder:text-white/50"
           />
         </div>
         <div className="flex items-center space-x-2">
@@ -216,8 +216,8 @@ export function ABTestManagement() {
               size="sm"
               onClick={() => setSelectedFilter(filter)}
               className={selectedFilter === filter 
-                ? "bg-blue-600 hover:bg-blue-700" 
-                : "border-white/10 hover:bg-white/5"
+                ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                : "border-white/10 hover:bg-white/5 text-white"
               }
             >
               {filter.charAt(0).toUpperCase() + filter.slice(1)}
@@ -233,23 +233,23 @@ export function ABTestManagement() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <CardTitle className="text-foreground">{experiment.name}</CardTitle>
+                  <CardTitle className="text-white">{experiment.name}</CardTitle>
                   <Badge variant="outline" className={getStatusColor(experiment.status)}>
                     {experiment.status}
                   </Badge>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Button variant="ghost" size="sm" className="hover:bg-white/10">
+                  <Button variant="ghost" size="sm" className="hover:bg-white/10 text-white">
                     <Eye className="h-4 w-4 mr-2" />
                     View Details
                   </Button>
                   {experiment.status === "running" ? (
-                    <Button variant="ghost" size="sm" className="hover:bg-white/10">
+                    <Button variant="ghost" size="sm" className="hover:bg-white/10 text-white">
                       <Pause className="h-4 w-4 mr-2" />
                       Pause
                     </Button>
                   ) : experiment.status === "paused" ? (
-                    <Button variant="ghost" size="sm" className="hover:bg-white/10">
+                    <Button variant="ghost" size="sm" className="hover:bg-white/10 text-white">
                       <Play className="h-4 w-4 mr-2" />
                       Resume
                     </Button>
@@ -263,18 +263,18 @@ export function ABTestManagement() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-muted-foreground">Progress</span>
-                      <span className="text-sm font-medium text-foreground">{experiment.progress}%</span>
+                      <span className="text-sm text-white/65">Progress</span>
+                      <span className="text-sm font-medium text-white">{experiment.progress}%</span>
                     </div>
                     <Progress value={experiment.progress} className="h-2 bg-muted" />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground">Total Traffic</p>
-                    <p className="text-lg font-bold text-foreground">{experiment.traffic.toLocaleString()}</p>
+                    <p className="text-sm text-white/65">Total Traffic</p>
+                    <p className="text-lg font-bold text-white">{experiment.traffic.toLocaleString()}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground">Total Conversions</p>
-                    <p className="text-lg font-bold text-foreground">
+                    <p className="text-sm text-white/65">Total Conversions</p>
+                    <p className="text-lg font-bold text-white">
                       {(experiment.conversions.a + experiment.conversions.b).toLocaleString()}
                     </p>
                   </div>
@@ -283,14 +283,14 @@ export function ABTestManagement() {
                 {/* A/B Comparison */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
-                    <h4 className="font-medium text-foreground flex items-center">
+                    <h4 className="font-medium text-white flex items-center">
                       <MousePointer className="h-4 w-4 mr-2 text-blue-400" />
                       Click-Through Rate
                     </h4>
                     <div className="flex items-center justify-between">
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant A</p>
-                        <p className="text-lg font-bold text-foreground">{experiment.metrics.ctr.a}%</p>
+                        <p className="text-sm text-white/65">Variant A</p>
+                        <p className="text-lg font-bold text-white">{experiment.metrics.ctr.a}%</p>
                       </div>
                       <div className="px-4">
                         {getWinner(experiment.metrics.ctr.a, experiment.metrics.ctr.b) && (
@@ -300,21 +300,21 @@ export function ABTestManagement() {
                         )}
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant B</p>
-                        <p className="text-lg font-bold text-foreground">{experiment.metrics.ctr.b}%</p>
+                        <p className="text-sm text-white/65">Variant B</p>
+                        <p className="text-lg font-bold text-white">{experiment.metrics.ctr.b}%</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-medium text-foreground flex items-center">
+                    <h4 className="font-medium text-white flex items-center">
                       <DollarSign className="h-4 w-4 mr-2 text-green-400" />
                       ROAS
                     </h4>
                     <div className="flex items-center justify-between">
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant A</p>
-                        <p className="text-lg font-bold text-foreground">{experiment.metrics.roas.a}x</p>
+                        <p className="text-sm text-white/65">Variant A</p>
+                        <p className="text-lg font-bold text-white">{experiment.metrics.roas.a}x</p>
                       </div>
                       <div className="px-4">
                         {getWinner(experiment.metrics.roas.a, experiment.metrics.roas.b) && (
@@ -324,21 +324,21 @@ export function ABTestManagement() {
                         )}
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant B</p>
-                        <p className="text-lg font-bold text-foreground">{experiment.metrics.roas.b}x</p>
+                        <p className="text-sm text-white/65">Variant B</p>
+                        <p className="text-lg font-bold text-white">{experiment.metrics.roas.b}x</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-medium text-foreground flex items-center">
+                    <h4 className="font-medium text-white flex items-center">
                       <Target className="h-4 w-4 mr-2 text-purple-400" />
                       Cost Per Conversion
                     </h4>
                     <div className="flex items-center justify-between">
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant A</p>
-                        <p className="text-lg font-bold text-foreground">${experiment.metrics.cpd.a}</p>
+                        <p className="text-sm text-white/65">Variant A</p>
+                        <p className="text-lg font-bold text-white">${experiment.metrics.cpd.a}</p>
                       </div>
                       <div className="px-4">
                         {getWinner(experiment.metrics.cpd.a, experiment.metrics.cpd.b, false) && (
@@ -348,8 +348,8 @@ export function ABTestManagement() {
                         )}
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-muted-foreground">Variant B</p>
-                        <p className="text-lg font-bold text-foreground">${experiment.metrics.cpd.b}</p>
+                        <p className="text-sm text-white/65">Variant B</p>
+                        <p className="text-lg font-bold text-white">${experiment.metrics.cpd.b}</p>
                       </div>
                     </div>
                   </div>
@@ -357,8 +357,8 @@ export function ABTestManagement() {
 
                 {/* Hypothesis */}
                 <div className="p-4 rounded-lg bg-white/5 border border-white/10">
-                  <p className="text-sm text-muted-foreground mb-1">Hypothesis</p>
-                  <p className="text-foreground">{experiment.hypothesis}</p>
+                  <p className="text-sm text-white/65 mb-1">Hypothesis</p>
+                  <p className="text-white">{experiment.hypothesis}</p>
                 </div>
               </div>
             </CardContent>
