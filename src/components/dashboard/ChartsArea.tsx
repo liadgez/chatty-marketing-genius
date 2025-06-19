@@ -64,7 +64,7 @@ export function ChartsArea() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
         <ChartSkeleton />
         <ChartSkeleton />
       </div>
@@ -72,14 +72,14 @@ export function ChartsArea() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
       {/* Bar Chart */}
       <Card className="glass-effect border-white/10 bg-black/20">
-        <CardHeader>
-          <CardTitle className="text-white font-semibold">A/B Test Performance</CardTitle>
+        <CardHeader className="p-4 md:p-6">
+          <CardTitle className="text-white font-semibold text-lg">A/B Test Performance</CardTitle>
         </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig} className="h-80">
+        <CardContent className="p-4 md:p-6 pt-0">
+          <ChartContainer config={chartConfig} className="h-64 md:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={testPerformanceData}>
                 <XAxis 
@@ -112,11 +112,11 @@ export function ChartsArea() {
 
       {/* Area Chart */}
       <Card className="glass-effect border-white/10 bg-black/20">
-        <CardHeader>
-          <CardTitle className="text-white font-semibold">Real-time Conversions</CardTitle>
+        <CardHeader className="p-4 md:p-6">
+          <CardTitle className="text-white font-semibold text-lg">Real-time Conversions</CardTitle>
         </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig} className="h-80">
+        <CardContent className="p-4 md:p-6 pt-0">
+          <ChartContainer config={chartConfig} className="h-64 md:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={conversionsData}>
                 <XAxis 

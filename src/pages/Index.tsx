@@ -10,7 +10,9 @@ import { AgentManagement } from "@/components/AgentManagement";
 import { SystemMonitoring } from "@/components/SystemMonitoring";
 import { GeneratedOutputs } from "@/components/GeneratedOutputs";
 import { ChatInterface } from "@/components/ChatInterface";
-import { RefreshCw, FileSpreadsheet } from "lucide-react";
+import { RefreshCw, FileSpreadsheet, MessageCircle, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
 
 // Import new components we'll create
 import { ABTestManagement } from "@/components/ABTestManagement";
@@ -18,6 +20,8 @@ import { ConversionsTracking } from "@/components/ConversionsTracking";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const renderActiveSection = () => {
     switch (activeSection) {
@@ -74,20 +78,20 @@ const Index = () => {
         
         <div className="flex-1 flex flex-col">
           {/* Enhanced Header with breadcrumbs and stats */}
-          <header className="h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
-            <SidebarTrigger className="mr-4 text-white hover:bg-white/10 hover:text-blue-400 transition-colors" />
+          <header className="h-16 glass-effect border-b border-white/10 flex items-center px-3 md:px-6 backdrop-blur-xl">
+            <SidebarTrigger className="mr-2 md:mr-4 text-white hover:bg-white/10 hover:text-blue-400 transition-colors" />
             
             {/* Breadcrumb */}
-            <div className="flex items-center space-x-2">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <div className="flex items-center space-x-2 flex-1 min-w-0">
+              <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent truncate">
                 TerrificMarketingAI
               </h1>
-              <span className="text-white/50">/</span>
-              <span className="text-white/85 font-medium">{getSectionTitle()}</span>
+              <span className="text-white/50 hidden sm:inline">/</span>
+              <span className="text-white/85 font-medium hidden sm:inline truncate">{getSectionTitle()}</span>
             </div>
 
-            {/* Stats Cluster */}
-            <div className="ml-auto flex items-center space-x-6">
+            {/* Stats Cluster - Hidden on mobile */}
+            <div className="hidden lg:flex items-center space-x-6">
               <div className="flex items-center space-x-6 text-sm">
                 <div className="flex items-center space-x-2">
                   <span className="text-white font-medium">24</span>
@@ -109,33 +113,69 @@ const Index = () => {
               <button className="p-2 rounded-lg text-white/65 hover:text-white hover:bg-white/10 transition-all duration-200 group">
                 <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
               </button>
-              
+            </div>
+
+            {/* Mobile Actions */}
+            <div className="flex items-center space-x-2">
               <ThemeToggle />
+              
+              {/* Mobile Chat Toggle */}
+              {isMobile && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsChatOpen(!isChatOpen)}
+                  className="text-white hover:bg-white/10 lg:hidden"
+                  aria-label="Toggle chat"
+                >
+                  {isChatOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
+                </Button>
+              )}
             </div>
           </header>
 
           {/* Main Content */}
-          <main className="flex-1 flex">
-            <div className="flex-1 overflow-auto">
+          <main className="flex-1 flex relative">
+            <div className={`flex-1 overflow-auto transition-all duration-300 ${
+              isMobile && isChatOpen ? 'blur-sm pointer-events-none' : ''
+            }`}>
               {renderActiveSection()}
             </div>
             
-            {/* Chat Interface - Always Visible */}
-            <div className="w-96 glass-effect border-l border-white/10 flex flex-col">
+            {/* Chat Interface - Responsive behavior */}
+            <div className={`
+              ${isMobile 
+                ? `fixed inset-0 top-16 z-50 transition-transform duration-300 ${
+                    isChatOpen ? 'translate-x-0' : 'translate-x-full'
+                  }`
+                : 'w-96 relative'
+              }
+              glass-effect border-l border-white/10 flex flex-col bg-black/40 backdrop-blur-xl
+            `}>
               {/* TerrificAI Branding at top of chat */}
-              <div className="p-6 border-b border-white/10">
+              <div className="p-4 md:p-6 border-b border-white/10">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                     <FileSpreadsheet className="w-5 h-5 text-white" />
                   </div>
-                  <div>
-                    <h2 className="font-semibold text-white">TerrificAI</h2>
-                    <p className="text-xs text-white/65">Marketing Assistant</p>
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-semibold text-white truncate">TerrificAI</h2>
+                    <p className="text-xs text-white/65 truncate">Marketing Assistant</p>
                   </div>
+                  {isMobile && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setIsChatOpen(false)}
+                      className="text-white/65 hover:text-white hover:bg-white/10 shrink-0"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  )}
                 </div>
               </div>
               
-              <div className="flex-1">
+              <div className="flex-1 min-h-0">
                 <ChatInterface />
               </div>
             </div>

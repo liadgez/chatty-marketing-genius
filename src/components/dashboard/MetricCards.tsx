@@ -53,7 +53,7 @@ export function MetricCards() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {Array.from({ length: 4 }).map((_, index) => (
           <SkeletonCard key={index} />
         ))}
@@ -62,7 +62,7 @@ export function MetricCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
       {metrics.map((metric) => (
         <Card 
           key={metric.id}
@@ -71,19 +71,19 @@ export function MetricCards() {
           tabIndex={0}
           aria-label={`${metric.title}: ${metric.value}, ${metric.change}`}
         >
-          <CardContent className="p-6">
+          <CardContent className="p-4 md:p-6">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-white/65 font-medium">{metric.title}</p>
-                <p className="text-3xl font-bold text-white mt-2">{metric.value}</p>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-white/65 font-medium truncate">{metric.title}</p>
+                <p className="text-2xl md:text-3xl font-bold text-white mt-2">{metric.value}</p>
                 <p className={`text-sm mt-1 font-medium ${
                   metric.changeType === 'positive' ? 'text-green-400' : 'text-red-400'
                 }`}>
                   {metric.change}
                 </p>
               </div>
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-200">
-                <metric.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-200 shrink-0 ml-3">
+                <metric.icon className="w-5 h-5 md:w-6 md:h-6 text-blue-400" aria-hidden="true" />
               </div>
             </div>
           </CardContent>
