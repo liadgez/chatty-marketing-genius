@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { BarChart3, Lightbulb, Target } from "lucide-react";
+import { BarChart3, Lightbulb, Target, FileText, Play } from "lucide-react";
 import { ChatMode } from "@/hooks/useChatState";
 
 interface ModeSelectorProps {
@@ -31,6 +31,20 @@ export function ModeSelector({ currentMode, onModeSelect, disabled }: ModeSelect
       icon: Target,
       description: "Strategic recommendations",
       color: "from-orange-600 to-orange-700"
+    },
+    {
+      id: "plan" as const,
+      label: "Plan",
+      icon: FileText,
+      description: "Create detailed plans",
+      color: "from-cyan-600 to-cyan-700"
+    },
+    {
+      id: "execute" as const,
+      label: "Execute",
+      icon: Play,
+      description: "Execute & implement",
+      color: "from-red-600 to-red-700"
     }
   ];
 
@@ -47,7 +61,7 @@ export function ModeSelector({ currentMode, onModeSelect, disabled }: ModeSelect
             onClick={() => onModeSelect(mode.id)}
             disabled={disabled}
             className={`
-              flex-1 min-w-32 h-16 flex flex-col items-center justify-center gap-1 text-white font-medium
+              flex-1 min-w-24 h-16 flex flex-col items-center justify-center gap-1 text-white font-medium
               ${isSelected 
                 ? `bg-gradient-to-r ${mode.color} shadow-lg shadow-blue-500/25` 
                 : 'glass-effect hover:bg-white/10 border border-white/20'

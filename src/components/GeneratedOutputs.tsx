@@ -51,22 +51,22 @@ export function GeneratedOutputs() {
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "conversation": return "bg-blue-100 text-blue-800";
-      case "analysis": return "bg-purple-100 text-purple-800";
-      case "report": return "bg-green-100 text-green-800";
-      case "log": return "bg-gray-100 text-gray-800";
-      default: return "bg-gray-100 text-gray-800";
+  const getTypeColor = (category?: string) => {
+    switch (category) {
+      case "conversation": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "analysis": return "bg-purple-500/20 text-purple-400 border-purple-500/30";
+      case "report": return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      case "log": return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+      default: return "bg-gray-500/20 text-gray-400 border-gray-500/30";
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "ready": return "bg-green-100 text-green-800";
-      case "generating": return "bg-yellow-100 text-yellow-800";
-      case "error": return "bg-red-100 text-red-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "ready": return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      case "generating": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+      case "error": return "bg-red-500/20 text-red-400 border-red-500/30";
+      default: return "bg-gray-500/20 text-gray-400 border-gray-500/30";
     }
   };
 
@@ -77,10 +77,10 @@ export function GeneratedOutputs() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-slate-800">Generated Outputs & Reports</h2>
-        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+        <h2 className="text-3xl font-bold text-white">Generated Outputs & Reports</h2>
+        <Badge variant="outline" className="bg-blue-500/20 text-blue-400 border-blue-500/30">
           {reports.filter(r => r.status === "ready").length} Files Ready
         </Badge>
       </div>
@@ -88,38 +88,38 @@ export function GeneratedOutputs() {
       {/* Search and Filter */}
       <div className="flex items-center space-x-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4" />
           <Input
             placeholder="Search files..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pl-10 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-background/50 text-white placeholder:text-white/50"
           />
         </div>
         <select
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="px-3 py-2 border border-slate-300 rounded-md text-sm"
+          className="px-3 py-2 glass-effect border-white/20 text-white bg-background/50 rounded-md text-sm focus:border-blue-500/50"
         >
-          <option value="all">All Types</option>
-          <option value="conversation">Conversations</option>
-          <option value="analysis">Analysis</option>
-          <option value="report">Reports</option>
-          <option value="log">Logs</option>
+          <option value="all" className="bg-background text-white">All Types</option>
+          <option value="conversation" className="bg-background text-white">Conversations</option>
+          <option value="analysis" className="bg-background text-white">Analysis</option>
+          <option value="report" className="bg-background text-white">Reports</option>
+          <option value="log" className="bg-background text-white">Logs</option>
         </select>
       </div>
 
       <Tabs defaultValue="files" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="files">File Browser</TabsTrigger>
-          <TabsTrigger value="preview">Content Preview</TabsTrigger>
-          <TabsTrigger value="analytics">Download Analytics</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3 glass-effect">
+          <TabsTrigger value="files" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">File Browser</TabsTrigger>
+          <TabsTrigger value="preview" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Content Preview</TabsTrigger>
+          <TabsTrigger value="analytics" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Download Analytics</TabsTrigger>
         </TabsList>
 
         <TabsContent value="files" className="space-y-6">
           <div className="grid grid-cols-1 gap-4">
             {filteredReports.map((report) => (
-              <Card key={report.id} className="hover:shadow-md transition-shadow">
+              <Card key={report.id} className="glass-effect hover:bg-white/10 transition-all border-white/10">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
@@ -127,8 +127,8 @@ export function GeneratedOutputs() {
                         {getTypeIcon(report.type)}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-slate-800">{report.name}</h3>
-                        <div className="flex items-center space-x-4 text-sm text-slate-600 mt-1">
+                        <h3 className="font-semibold text-white">{report.name}</h3>
+                        <div className="flex items-center space-x-4 text-sm text-white/65 mt-1">
                           <span className="flex items-center">
                             <Calendar className="w-3 h-3 mr-1" />
                             {report.date.toLocaleDateString()} {report.date.toLocaleTimeString()}
@@ -146,7 +146,7 @@ export function GeneratedOutputs() {
                         {report.status}
                       </Badge>
                       {report.status === "ready" && (
-                        <Button size="sm" variant="outline">
+                        <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10">
                           <Download className="w-4 h-4 mr-2" />
                           Download
                         </Button>
@@ -160,27 +160,27 @@ export function GeneratedOutputs() {
         </TabsContent>
 
         <TabsContent value="preview" className="space-y-6">
-          <Card>
+          <Card className="glass-effect border-white/10">
             <CardHeader>
-              <CardTitle className="text-slate-800">ab_test_conversation.txt</CardTitle>
+              <CardTitle className="text-white">ab_test_conversation.txt</CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-96 bg-slate-50 p-4 rounded-lg">
+              <ScrollArea className="h-96 glass-effect p-4 rounded-lg border-white/10">
                 <div className="font-mono text-sm space-y-2">
-                  <div className="text-blue-600">[2024-06-19 10:15:23] User: I want to start a new A/B test for our landing page</div>
-                  <div className="text-green-600">[2024-06-19 10:15:24] Assistant: I'll help you set up an A/B test. What's the main goal of this test?</div>
-                  <div className="text-blue-600">[2024-06-19 10:15:45] User: We want to test two different headlines to see which converts better</div>
-                  <div className="text-green-600">[2024-06-19 10:15:46] Assistant: Perfect! Please provide me with:</div>
-                  <div className="text-green-600">1. Control headline (Version A)</div>
-                  <div className="text-green-600">2. Test headline (Version B)</div>
-                  <div className="text-green-600">3. Target conversion metric</div>
-                  <div className="text-green-600">4. Expected test duration</div>
-                  <div className="text-blue-600">[2024-06-19 10:16:12] User: Version A: "Transform Your Business Today"</div>
-                  <div className="text-blue-600">Version B: "Double Your Revenue in 30 Days"</div>
-                  <div className="text-blue-600">Metric: Click-through rate to signup</div>
-                  <div className="text-blue-600">Duration: 2 weeks</div>
-                  <div className="text-green-600">[2024-06-19 10:16:13] Assistant: Excellent! I'm configuring your A/B test with these parameters...</div>
-                  <div className="text-gray-600">[Test configuration details would continue...]</div>
+                  <div className="text-blue-400">[2024-06-19 10:15:23] User: I want to start a new A/B test for our landing page</div>
+                  <div className="text-emerald-400">[2024-06-19 10:15:24] Assistant: I'll help you set up an A/B test. What's the main goal of this test?</div>
+                  <div className="text-blue-400">[2024-06-19 10:15:45] User: We want to test two different headlines to see which converts better</div>
+                  <div className="text-emerald-400">[2024-06-19 10:15:46] Assistant: Perfect! Please provide me with:</div>
+                  <div className="text-emerald-400">1. Control headline (Version A)</div>
+                  <div className="text-emerald-400">2. Test headline (Version B)</div>
+                  <div className="text-emerald-400">3. Target conversion metric</div>
+                  <div className="text-emerald-400">4. Expected test duration</div>
+                  <div className="text-blue-400">[2024-06-19 10:16:12] User: Version A: "Transform Your Business Today"</div>
+                  <div className="text-blue-400">Version B: "Double Your Revenue in 30 Days"</div>
+                  <div className="text-blue-400">Metric: Click-through rate to signup</div>
+                  <div className="text-blue-400">Duration: 2 weeks</div>
+                  <div className="text-emerald-400">[2024-06-19 10:16:13] Assistant: Excellent! I'm configuring your A/B test with these parameters...</div>
+                  <div className="text-white/60">[Test configuration details would continue...]</div>
                 </div>
               </ScrollArea>
             </CardContent>
@@ -189,40 +189,40 @@ export function GeneratedOutputs() {
 
         <TabsContent value="analytics" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800 text-sm">Total Downloads</CardTitle>
+                <CardTitle className="text-white text-sm">Total Downloads</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-slate-800">1,247</div>
-                <p className="text-sm text-slate-600">This month</p>
+                <div className="text-3xl font-bold text-white">1,247</div>
+                <p className="text-sm text-white/65">This month</p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800 text-sm">Most Downloaded</CardTitle>
+                <CardTitle className="text-white text-sm">Most Downloaded</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-lg font-semibold text-slate-800">Analysis Reports</div>
-                <p className="text-sm text-slate-600">45% of downloads</p>
+                <div className="text-lg font-semibold text-white">Analysis Reports</div>
+                <p className="text-sm text-white/65">45% of downloads</p>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800 text-sm">Storage Used</CardTitle>
+                <CardTitle className="text-white text-sm">Storage Used</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-slate-800">12.3 GB</div>
-                <p className="text-sm text-slate-600">Of 50 GB available</p>
+                <div className="text-3xl font-bold text-white">12.3 GB</div>
+                <p className="text-sm text-white/65">Of 50 GB available</p>
               </CardContent>
             </Card>
           </div>
 
-          <Card>
+          <Card className="glass-effect border-white/10">
             <CardHeader>
-              <CardTitle className="text-slate-800">Recent Download Activity</CardTitle>
+              <CardTitle className="text-white">Recent Download Activity</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -232,12 +232,12 @@ export function GeneratedOutputs() {
                   { file: "run_report.csv", time: "6 hours ago", user: "Operations Team" },
                   { file: "conversation_summary.txt", time: "8 hours ago", user: "Product Team" },
                 ].map((activity, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-3 glass-effect rounded-lg border-white/10">
                     <div>
-                      <p className="font-medium text-slate-800">{activity.file}</p>
-                      <p className="text-sm text-slate-600">Downloaded by {activity.user}</p>
+                      <p className="font-medium text-white">{activity.file}</p>
+                      <p className="text-sm text-white/65">Downloaded by {activity.user}</p>
                     </div>
-                    <span className="text-sm text-slate-500">{activity.time}</span>
+                    <span className="text-sm text-white/50">{activity.time}</span>
                   </div>
                 ))}
               </div>

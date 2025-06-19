@@ -9,7 +9,7 @@ export interface Message {
   category?: "task" | "anomaly" | "system" | "general";
 }
 
-export type ChatMode = "analysis" | "creative" | "strategy" | null;
+export type ChatMode = "analysis" | "creative" | "strategy" | "plan" | "execute" | null;
 
 export interface ChatStep {
   step: "idle" | "mode-selection" | "processing" | "sheet-discovery" | "sheet-selection" | "data-search";
@@ -21,7 +21,7 @@ export const useChatState = () => {
     {
       id: "1",
       type: "assistant",
-      content: "Welcome to TerrificMarketingAI! I'm here to help you with data analysis, creative suggestions, and strategic recommendations. Please select a mode to get started:",
+      content: "Welcome to TerrificMarketingAI! I'm here to help you with data analysis, creative suggestions, strategic recommendations, planning, and execution. Please select a mode to get started:",
       timestamp: new Date(),
       category: "general"
     }
