@@ -6,13 +6,14 @@ export interface Message {
   type: "user" | "assistant";
   content: string;
   timestamp: Date;
-  category?: "task" | "anomaly" | "system" | "general";
+  category?: "task" | "anomaly" | "system" | "general" | "action";
 }
 
 export type ChatMode = "analysis" | "creative" | "strategy" | null;
+export type ActionType = 'charts' | 'draft-email' | 'tables' | 'mind-map' | 'action-items' | 'run';
 
 export interface ChatStep {
-  step: "idle" | "mode-selection" | "processing" | "sheet-discovery" | "sheet-selection" | "data-search";
+  step: "idle" | "mode-selection" | "processing" | "sheet-discovery" | "sheet-selection" | "data-search" | "action-processing";
   data?: any;
 }
 

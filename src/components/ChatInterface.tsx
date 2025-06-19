@@ -11,6 +11,7 @@ import { EnhancedLoadingIndicator } from "./chat/EnhancedLoadingIndicator";
 import { ModeSelector } from "./chat/ModeSelector";
 import { ChatInput } from "./chat/ChatInput";
 import { ValidationError } from "./chat/ValidationError";
+import { ActionButtonsBar } from "./chat/ActionButtonsBar";
 import { ChatErrorBoundary } from "./ChatErrorBoundary";
 
 export function ChatInterface() {
@@ -32,7 +33,7 @@ export function ChatInterface() {
 
   const { validationError, validateAndSanitize, clearValidationError } = useChatValidation();
 
-  const { handleSendMessage, handleModeSelection } = useChatHandlers({
+  const { handleSendMessage, handleModeSelection, handleActionSelect } = useChatHandlers({
     input,
     currentMode,
     chatStep,
@@ -99,6 +100,8 @@ export function ChatInterface() {
     switch (chatStep.step) {
       case "sheet-discovery":
         return "Discovering available data sheets...";
+      case "action-processing":
+        return "Processing your quick action...";
       case "processing":
         return "Processing your request...";
       default:
@@ -139,7 +142,7 @@ export function ChatInterface() {
           </div>
         </ScrollArea>
 
-        {/* Mode Selector - Always visible above input */}
+        {/* Mode Selector - Always visible above actions */}
         <div className="shrink-0 px-6 pb-4 bg-transparent">
           <ModeSelector 
             currentMode={currentMode}
@@ -147,6 +150,16 @@ export function ChatInterface() {
             disabled={isLoading}
           />
         </div>
+
+        {/* Action Buttons Bar - Only show when mode is selected */}
+        {currentMode && (
+          <div className="shrink-0">
+            <ActionButtonsBar 
+              onActionSelect={handleActionSelect}
+              disabled={isLoading}
+            />
+          </div>
+        )}
 
         {/* Validation Error */}
         {validationError && (

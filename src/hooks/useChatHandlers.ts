@@ -1,4 +1,4 @@
-import { ChatMode, ChatStep, Message } from "./useChatState";
+import { ChatMode, ChatStep, Message, ActionType } from "./useChatState";
 
 interface UseChatHandlersProps {
   input: string;
@@ -29,6 +29,64 @@ export const useChatHandlers = ({
   addMessage,
   clearInput,
 }: UseChatHandlersProps) => {
+
+  const handleActionSelect = async (action: ActionType) => {
+    if (!currentMode) {
+      addMessage({
+        type: "assistant",
+        content: "Please select a mode first before using quick actions!",
+        category: "system"
+      });
+      return;
+    }
+
+    const actionMessages = {
+      charts: `🔄 Generating charts and visualizations based on your ${currentMode} mode context...`,
+      'draft-email': `✍️ Drafting email content tailored for ${currentMode} purposes...`,
+      tables: `📊 Creating data tables relevant to ${currentMode} analysis...`,
+      'mind-map': `🧠 Building a mind map for your ${currentMode} strategy...`,
+      'action-items': `📋 Extracting actionable items from ${currentMode} insights...`,
+      run: `▶️ Executing ${currentMode} analysis workflow...`
+    };
+
+    addMessage({
+      type: "user",
+      content: `Quick Action: ${action.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+      category: "action"
+    });
+
+    setIsLoading(true);
+    setChatStep({ step: "action-processing", data: { action } });
+
+    setTimeout(() => {
+      processActionRequest(action);
+    }, 1500);
+  };
+
+  const processActionRequest = (action: ActionType) => {
+    const responses = {
+      charts: `📈 **Chart Analysis Complete**\n\n🎯 Generated 3 key visualizations:\n• Performance Trend Chart (23% growth)\n• Conversion Funnel Analysis\n• ROI Comparison by Channel\n\n**Key Insights:**\n• Mobile traffic shows highest conversion\n• Q4 performance exceeded targets\n• Social media ROI improved 40%\n\nWould you like me to dive deeper into any specific chart?`,
+      
+      'draft-email': `📧 **Email Draft Ready**\n\n**Subject:** Marketing Performance Update - Strong Q4 Results\n\n**Draft Preview:**\n"Hi [Team],\n\nI'm excited to share our Q4 marketing performance highlights:\n\n✅ 23% growth in conversions\n✅ 40% improvement in social media ROI\n✅ Mobile optimization driving results\n\nNext quarter focus: Desktop experience optimization.."\n\n**Tone:** Professional, Data-driven\n**CTA:** Schedule strategy meeting\n\nShall I refine any section?`,
+      
+      tables: `📊 **Data Tables Generated**\n\n**Table 1: Channel Performance**\n| Channel | Conversions | ROI | Change |\n|---------|-------------|-----|--------|\n| Social  | 1,234       | 4.2x| +40%   |\n| Email   | 987         | 3.8x| +15%   |\n| Search  | 2,156       | 5.1x| +23%   |\n\n**Table 2: Mobile vs Desktop**\n| Device  | Conv Rate | Revenue |\n|---------|-----------|----------|\n| Mobile  | 34%       | $45,230 |\n| Desktop | 28%       | $38,910 |\n\nNeed additional breakdowns?`,
+      
+      'mind-map': `🧠 **Strategic Mind Map Created**\n\n**Central Theme: Q4 Marketing Success**\n\n🌟 **Performance Branch**\n├── 23% Growth\n├── Mobile Excellence\n└── ROI Improvements\n\n🎯 **Opportunities Branch**\n├── Desktop Optimization\n├── New Channel Testing\n└── Automation Scaling\n\n🚀 **Next Actions Branch**\n├── A/B Test Desktop UX\n├── Expand Social Strategy\n└── Team Training Plan\n\nWant me to expand any branch?`,
+      
+      'action-items': `📋 **Action Items Extracted**\n\n**High Priority:**\n🔴 Optimize desktop user experience (Target: +15% conversion)\n🔴 Scale successful social media campaigns\n🔴 A/B test mobile-first design elements\n\n**Medium Priority:**\n🟡 Analyze competitor desktop strategies\n🟡 Create mobile optimization playbook\n🟡 Schedule team training on new tools\n\n**Low Priority:**\n🟢 Document Q4 success factors\n🟢 Plan Q1 budget allocation\n\n**Assignments needed?**`,
+      
+      run: `▶️ **Analysis Execution Complete**\n\n**Workflow Results:**\n✅ Data validation passed\n✅ Performance metrics calculated\n✅ Insights generated\n✅ Recommendations compiled\n\n**Key Findings:**\n• Strong mobile performance trend\n• Desktop optimization opportunity\n• Social media strategy working\n• Ready for Q1 scaling\n\n**Next Steps:**\n1. Review detailed findings\n2. Prioritize action items\n3. Schedule implementation\n\nExecute next workflow phase?`
+    };
+
+    addMessage({
+      type: "assistant",
+      content: responses[action],
+      category: "action"
+    });
+    
+    setChatStep({ step: "idle" });
+    setIsLoading(false);
+  };
 
   const handleModeSelection = (mode: ChatMode) => {
     const modeMessages = {
@@ -162,5 +220,6 @@ export const useChatHandlers = ({
   return {
     handleSendMessage,
     handleModeSelection,
+    handleActionSelect,
   };
 };
