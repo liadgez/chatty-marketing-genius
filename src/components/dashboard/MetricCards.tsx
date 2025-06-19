@@ -4,6 +4,7 @@ import { TrendingUp, Activity, Target, CheckCircle } from "lucide-react";
 
 const metrics = [
   {
+    id: "total-experiments",
     title: "Total Experiments",
     value: "156",
     change: "+12%",
@@ -11,6 +12,7 @@ const metrics = [
     icon: Activity,
   },
   {
+    id: "active-tests",
     title: "Active Tests",
     value: "24",
     change: "+3",
@@ -18,6 +20,7 @@ const metrics = [
     icon: Target,
   },
   {
+    id: "avg-roas",
     title: "Avg ROAS",
     value: "4.2x",
     change: "+0.3x",
@@ -25,6 +28,7 @@ const metrics = [
     icon: TrendingUp,
   },
   {
+    id: "completed-tests",
     title: "Completed Tests",
     value: "132",
     change: "+8",
@@ -36,10 +40,13 @@ const metrics = [
 export function MetricCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {metrics.map((metric, index) => (
+      {metrics.map((metric) => (
         <Card 
-          key={index}
+          key={metric.id}
           className="glass-effect border-white/10 bg-black/20 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-200 group cursor-pointer"
+          role="button"
+          tabIndex={0}
+          aria-label={`${metric.title}: ${metric.value}, ${metric.change}`}
         >
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -53,7 +60,7 @@ export function MetricCards() {
                 </p>
               </div>
               <div className="w-12 h-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-200">
-                <metric.icon className="w-6 h-6 text-blue-400" />
+                <metric.icon className="w-6 h-6 text-blue-400" aria-hidden="true" />
               </div>
             </div>
           </CardContent>
