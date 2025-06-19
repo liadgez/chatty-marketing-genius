@@ -52,12 +52,12 @@ export function ChatInterface() {
   }, [messages, isLoading]);
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col bg-transparent">
       <SidebarProvider>
         <div className="flex h-full">
           <ChatSidebar />
           
-          <SidebarInset className="flex-1 flex flex-col">
+          <SidebarInset className="flex-1 flex flex-col bg-transparent">
             {/* Chat Header */}
             <div className="h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
               <SidebarTrigger className="mr-4 text-white hover:bg-white/10 hover:text-blue-400 transition-colors" />
@@ -74,7 +74,7 @@ export function ChatInterface() {
 
             {/* Mode Selector */}
             {chatStep.step === "mode-selection" && (
-              <div className="p-6 border-b border-white/10">
+              <div className="p-6 border-b border-white/10 bg-transparent">
                 <ModeSelector 
                   currentMode={currentMode}
                   onModeSelect={onModeSelect}
@@ -84,7 +84,7 @@ export function ChatInterface() {
             )}
 
             {/* Messages */}
-            <ScrollArea className="flex-1 p-6" ref={scrollAreaRef}>
+            <ScrollArea className="flex-1 p-6 bg-transparent" ref={scrollAreaRef}>
               <div className="space-y-6">
                 {messages.map((message) => (
                   <ChatMessage key={message.id} message={message} />

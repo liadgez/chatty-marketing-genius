@@ -31,7 +31,7 @@ export function ChartsArea() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Bar Chart */}
-      <Card className="glass-effect">
+      <Card className="glass-effect border-white/10 bg-black/20">
         <CardHeader>
           <CardTitle className="text-white font-semibold">A/B Test Performance</CardTitle>
         </CardHeader>
@@ -41,12 +41,12 @@ export function ChartsArea() {
               <BarChart data={testPerformanceData}>
                 <XAxis 
                   dataKey="name" 
-                  tick={{ fill: '#8A8F9C', fontSize: 12 }}
-                  axisLine={{ stroke: '#374151' }}
+                  tick={{ fill: '#ffffff99', fontSize: 12 }}
+                  axisLine={{ stroke: '#ffffff20' }}
                 />
                 <YAxis 
-                  tick={{ fill: '#8A8F9C', fontSize: 12 }}
-                  axisLine={{ stroke: '#374151' }}
+                  tick={{ fill: '#ffffff99', fontSize: 12 }}
+                  axisLine={{ stroke: '#ffffff20' }}
                 />
                 <ChartTooltip content={<ChartTooltipContent />} />
                 <Bar 
@@ -68,7 +68,7 @@ export function ChartsArea() {
       </Card>
 
       {/* Area Chart */}
-      <Card className="glass-effect">
+      <Card className="glass-effect border-white/10 bg-black/20">
         <CardHeader>
           <CardTitle className="text-white font-semibold">Real-time Conversions</CardTitle>
         </CardHeader>
@@ -78,12 +78,12 @@ export function ChartsArea() {
               <AreaChart data={conversionsData}>
                 <XAxis 
                   dataKey="time" 
-                  tick={{ fill: '#8A8F9C', fontSize: 12 }}
-                  axisLine={{ stroke: '#374151' }}
+                  tick={{ fill: '#ffffff99', fontSize: 12 }}
+                  axisLine={{ stroke: '#ffffff20' }}
                 />
                 <YAxis 
-                  tick={{ fill: '#8A8F9C', fontSize: 12 }}
-                  axisLine={{ stroke: '#374151' }}
+                  tick={{ fill: '#ffffff99', fontSize: 12 }}
+                  axisLine={{ stroke: '#ffffff20' }}
                 />
                 <ChartTooltip content={<ChartTooltipContent />} />
                 <Area 

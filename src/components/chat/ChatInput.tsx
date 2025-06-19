@@ -20,7 +20,7 @@ export function ChatInput({ value, onChange, onSend, disabled, placeholder }: Ch
   };
 
   return (
-    <div className="p-6 border-t border-white/10 glass-effect">
+    <div className="p-6 border-t border-white/10 glass-effect backdrop-blur-xl">
       <div className="flex space-x-3">
         <Textarea
           value={value}
@@ -28,7 +28,7 @@ export function ChatInput({ value, onChange, onSend, disabled, placeholder }: Ch
           placeholder={placeholder || "Type your message here... (Press Enter to send, Shift+Enter for new line)"}
           onKeyPress={handleKeyPress}
           disabled={disabled}
-          className="flex-1 min-h-[60px] max-h-32 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-background/50 text-white placeholder:text-white/50 resize-none"
+          className="flex-1 min-h-[60px] max-h-32 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-black/20 text-white placeholder:text-white/50 resize-none"
         />
         <Button 
           onClick={onSend} 
