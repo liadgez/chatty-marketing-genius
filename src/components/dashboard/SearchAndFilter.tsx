@@ -153,10 +153,10 @@ export function SearchAndFilter({
                   </SelectTrigger>
                   <SelectContent className="bg-black/90 border-white/10">
                     <SelectItem value="">All performance</SelectItem>
-                    <SelectItem value="winning">Winning (>10% lift)</SelectItem>
+                    <SelectItem value="winning">Winning (&gt;10% lift)</SelectItem>
                     <SelectItem value="promising">Promising (5-10% lift)</SelectItem>
                     <SelectItem value="neutral">Neutral (±5%)</SelectItem>
-                    <SelectItem value="losing">Losing (<-5% lift)</SelectItem>
+                    <SelectItem value="losing">Losing (&lt;-5% lift)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
