@@ -32,18 +32,18 @@ const chartConfig = {
 
 function ChartSkeleton() {
   return (
-    <Card className="glass-effect border-white/20 bg-white/5">
-      <CardHeader>
-        <Skeleton className="h-6 w-40 bg-white/20" />
+    <Card className="glass-effect border-white/10 bg-white/5 rounded-xl">
+      <CardHeader className="p-6 lg:p-8">
+        <Skeleton className="h-6 w-40 bg-white/20 rounded" />
       </CardHeader>
-      <CardContent>
-        <div className="h-80 space-y-4">
-          <Skeleton className="h-64 w-full bg-white/20" />
+      <CardContent className="p-6 lg:p-8 pt-0">
+        <div className="space-y-4">
+          <Skeleton className="h-64 lg:h-80 w-full bg-white/20 rounded" />
           <div className="flex justify-between">
-            <Skeleton className="h-4 w-12 bg-white/20" />
-            <Skeleton className="h-4 w-12 bg-white/20" />
-            <Skeleton className="h-4 w-12 bg-white/20" />
-            <Skeleton className="h-4 w-12 bg-white/20" />
+            <Skeleton className="h-4 w-12 bg-white/20 rounded" />
+            <Skeleton className="h-4 w-12 bg-white/20 rounded" />
+            <Skeleton className="h-4 w-12 bg-white/20 rounded" />
+            <Skeleton className="h-4 w-12 bg-white/20 rounded" />
           </div>
         </div>
       </CardContent>
@@ -74,7 +74,7 @@ export function ChartsArea() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
         <ChartSkeleton />
         <ChartSkeleton />
       </div>
@@ -83,7 +83,7 @@ export function ChartsArea() {
 
   if (!hasData) {
     return (
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
         <EmptyState type="tests" onAction={handleCreateTest} />
         <EmptyState type="analytics" onAction={handleViewGuide} />
       </div>
@@ -91,32 +91,37 @@ export function ChartsArea() {
   }
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8">
       {/* Bar Chart */}
-      <Card className="glass-effect border-white/20 bg-white/5">
-        <CardHeader className="p-4 md:p-6 pb-2">
-          <CardTitle className="text-white font-semibold text-lg">A/B Test Performance</CardTitle>
+      <Card className="glass-effect border-white/10 bg-white/5 rounded-xl shadow-lg backdrop-blur-md hover:border-white/20 transition-all duration-300">
+        <CardHeader className="p-6 lg:p-8 pb-4">
+          <CardTitle className="text-white font-semibold text-lg lg:text-xl">A/B Test Performance</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 md:p-6 pt-2">
-          <div className="h-64 md:h-80 w-full overflow-hidden">
+        <CardContent className="p-6 lg:p-8 pt-0">
+          <div className="h-64 lg:h-80 w-full">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={testPerformanceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <BarChart 
+                  data={testPerformanceData} 
+                  margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
+                >
                   <XAxis 
                     dataKey="name" 
                     tick={{ fill: '#ffffff99', fontSize: 12 }}
                     axisLine={{ stroke: '#ffffff20' }}
+                    tickLine={{ stroke: '#ffffff20' }}
                   />
                   <YAxis 
                     tick={{ fill: '#ffffff99', fontSize: 12 }}
                     axisLine={{ stroke: '#ffffff20' }}
-                    width={30}
+                    tickLine={{ stroke: '#ffffff20' }}
+                    width={40}
                   />
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Bar 
                     dataKey="value" 
                     fill="url(#gradient1)"
-                    radius={[4, 4, 0, 0]}
+                    radius={[6, 6, 0, 0]}
                     className="hover:brightness-110 transition-all duration-200"
                   />
                   <defs>
@@ -133,37 +138,42 @@ export function ChartsArea() {
       </Card>
 
       {/* Area Chart */}
-      <Card className="glass-effect border-white/20 bg-white/5">
-        <CardHeader className="p-4 md:p-6 pb-2">
-          <CardTitle className="text-white font-semibold text-lg">Real-time Conversions</CardTitle>
+      <Card className="glass-effect border-white/10 bg-white/5 rounded-xl shadow-lg backdrop-blur-md hover:border-white/20 transition-all duration-300">
+        <CardHeader className="p-6 lg:p-8 pb-4">
+          <CardTitle className="text-white font-semibold text-lg lg:text-xl">Real-time Conversions</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 md:p-6 pt-2">
-          <div className="h-64 md:h-80 w-full overflow-hidden">
+        <CardContent className="p-6 lg:p-8 pt-0">
+          <div className="h-64 lg:h-80 w-full">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={conversionsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <AreaChart 
+                  data={conversionsData} 
+                  margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
+                >
                   <XAxis 
                     dataKey="time" 
                     tick={{ fill: '#ffffff99', fontSize: 12 }}
                     axisLine={{ stroke: '#ffffff20' }}
+                    tickLine={{ stroke: '#ffffff20' }}
                   />
                   <YAxis 
                     tick={{ fill: '#ffffff99', fontSize: 12 }}
                     axisLine={{ stroke: '#ffffff20' }}
-                    width={30}
+                    tickLine={{ stroke: '#ffffff20' }}
+                    width={40}
                   />
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Area 
                     type="monotone" 
                     dataKey="value" 
                     stroke="#06B6D4" 
-                    strokeWidth={2}
+                    strokeWidth={3}
                     fill="url(#gradient2)"
                     className="hover:brightness-110 transition-all duration-200"
                   />
                   <defs>
                     <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#06B6D4" stopOpacity={0.3} />
+                      <stop offset="0%" stopColor="#06B6D4" stopOpacity={0.4} />
                       <stop offset="100%" stopColor="#06B6D4" stopOpacity={0.05} />
                     </linearGradient>
                   </defs>

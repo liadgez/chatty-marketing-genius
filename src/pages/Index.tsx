@@ -78,45 +78,45 @@ const Index = () => {
         
         <div className="flex-1 flex flex-col">
           {/* Enhanced Header with breadcrumbs and stats */}
-          <header className="h-16 glass-effect border-b border-white/10 flex items-center px-3 md:px-6 backdrop-blur-xl">
-            <SidebarTrigger className="mr-2 md:mr-4 text-white hover:bg-white/10 hover:text-blue-400 transition-colors" />
+          <header className="h-16 lg:h-20 glass-effect border-b border-white/10 flex items-center px-4 sm:px-6 lg:px-8 backdrop-blur-xl">
+            <SidebarTrigger className="mr-3 lg:mr-6 text-white hover:bg-white/10 hover:text-blue-400 transition-colors p-2 rounded-lg" />
             
             {/* Breadcrumb */}
-            <div className="flex items-center space-x-2 flex-1 min-w-0">
-              <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent truncate">
+            <div className="flex items-center space-x-3 flex-1 min-w-0">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent truncate">
                 TerrificMarketingAI
               </h1>
-              <span className="text-white/50 hidden sm:inline">/</span>
-              <span className="text-white/85 font-medium hidden sm:inline truncate">{getSectionTitle()}</span>
+              <span className="text-white/50 hidden sm:inline text-lg">/</span>
+              <span className="text-white/85 font-semibold hidden sm:inline truncate text-base lg:text-lg">{getSectionTitle()}</span>
             </div>
 
             {/* Stats Cluster - Hidden on mobile */}
-            <div className="hidden lg:flex items-center space-x-6">
-              <div className="flex items-center space-x-6 text-sm">
-                <div className="flex items-center space-x-2">
-                  <span className="text-white font-medium">24</span>
-                  <span className="text-white/65">Active Tests</span>
+            <div className="hidden lg:flex items-center space-x-8">
+              <div className="flex items-center space-x-8 text-sm">
+                <div className="flex items-center space-x-3">
+                  <span className="text-white font-semibold text-lg">24</span>
+                  <span className="text-white/70">Active Tests</span>
                 </div>
-                <div className="w-1 h-4 bg-white/20 rounded"></div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-white font-medium">4.2×</span>
-                  <span className="text-white/65">Avg ROAS</span>
+                <div className="w-1 h-6 bg-white/20 rounded"></div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-white font-semibold text-lg">4.2×</span>
+                  <span className="text-white/70">Avg ROAS</span>
                 </div>
-                <div className="w-1 h-4 bg-white/20 rounded"></div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                  <span className="text-green-400 font-medium">System Active</span>
+                <div className="w-1 h-6 bg-white/20 rounded"></div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                  <span className="text-green-400 font-semibold">System Active</span>
                 </div>
               </div>
               
               {/* Manual Refresh Button */}
-              <button className="p-2 rounded-lg text-white/65 hover:text-white hover:bg-white/10 transition-all duration-200 group">
-                <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+              <button className="p-3 rounded-xl text-white/65 hover:text-white hover:bg-white/10 transition-all duration-300 group">
+                <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
               </button>
             </div>
 
             {/* Mobile Actions */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <ThemeToggle />
               
               {/* Mobile Chat Toggle */}
@@ -125,7 +125,7 @@ const Index = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsChatOpen(!isChatOpen)}
-                  className="text-white hover:bg-white/10 lg:hidden"
+                  className="text-white hover:bg-white/10 lg:hidden p-3 rounded-xl"
                   aria-label="Toggle chat"
                 >
                   {isChatOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
@@ -148,28 +148,28 @@ const Index = () => {
                 ? `fixed inset-0 top-16 z-50 transition-transform duration-300 ${
                     isChatOpen ? 'translate-x-0' : 'translate-x-full'
                   }`
-                : 'w-96 relative'
+                : 'w-96 xl:w-[28rem] relative'
               }
-              glass-effect border-l border-white/10 flex flex-col bg-white/5 backdrop-blur-xl
+              glass-effect border-l border-white/10 flex flex-col bg-white/5 backdrop-blur-xl shadow-2xl
             `}>
               {/* TerrificAI Branding at top of chat */}
-              <div className="p-4 md:p-6 border-b border-white/10">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                    <FileSpreadsheet className="w-5 h-5 text-white" />
+              <div className="p-6 lg:p-8 border-b border-white/10">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <FileSpreadsheet className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="font-semibold text-white truncate">TerrificAI</h2>
-                    <p className="text-xs text-white/65 truncate">Marketing Assistant</p>
+                    <h2 className="font-bold text-white truncate text-lg">TerrificAI</h2>
+                    <p className="text-sm text-white/70 truncate">Marketing Assistant</p>
                   </div>
                   {isMobile && (
                     <Button
                       variant="ghost"
                       size="icon"
                       onClick={() => setIsChatOpen(false)}
-                      className="text-white/65 hover:text-white hover:bg-white/10 shrink-0"
+                      className="text-white/65 hover:text-white hover:bg-white/10 shrink-0 p-2 rounded-lg"
                     >
-                      <X className="w-4 h-4" />
+                      <X className="w-5 h-5" />
                     </Button>
                   )}
                 </div>

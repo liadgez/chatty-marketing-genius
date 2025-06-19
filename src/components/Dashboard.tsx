@@ -30,45 +30,47 @@ export function Dashboard() {
   } = useSearchAndFilter(mockExperiments);
 
   return (
-    <div className="space-y-4 md:space-y-6 p-3 md:p-6 bg-transparent min-h-full">
-      <ActionBar />
-      
-      {/* Search and Filter Section */}
-      <div className="glass-effect border-white/20 bg-white/5 rounded-lg p-4 md:p-6">
-        <SearchAndFilter
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          filters={filters}
-          onFiltersChange={setFilters}
-          resultsCount={resultsCount}
-          totalCount={totalCount}
-        />
-      </div>
-
-      <MetricCards />
-      <ChartsArea />
-      
-      {/* Debug info - remove in production */}
-      {hasActiveFilters && (
-        <div className="glass-effect border-white/20 bg-white/5 rounded-lg p-4">
-          <h3 className="text-white font-medium mb-2">Filtered Results ({resultsCount})</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-64 overflow-y-auto">
-            {filteredItems.slice(0, 12).map(item => (
-              <div key={item.id} className="bg-white/5 rounded p-2 text-sm">
-                <div className="text-white font-medium">{item.title}</div>
-                <div className="text-white/65 text-xs">
-                  {item.status} • {item.type} • {item.performance}
-                </div>
-              </div>
-            ))}
-            {filteredItems.length > 12 && (
-              <div className="bg-white/5 rounded p-2 text-sm text-center text-white/65">
-                +{filteredItems.length - 12} more...
-              </div>
-            )}
-          </div>
+    <div className="min-h-screen w-full px-4 py-6 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 space-y-6 lg:space-y-8">
+      <div className="max-w-7xl mx-auto space-y-6 lg:space-y-8">
+        <ActionBar />
+        
+        {/* Search and Filter Section */}
+        <div className="glass-effect border-white/10 bg-white/5 rounded-xl p-6 lg:p-8 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white/20">
+          <SearchAndFilter
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            filters={filters}
+            onFiltersChange={setFilters}
+            resultsCount={resultsCount}
+            totalCount={totalCount}
+          />
         </div>
-      )}
+
+        <MetricCards />
+        <ChartsArea />
+        
+        {/* Debug info - remove in production */}
+        {hasActiveFilters && (
+          <div className="glass-effect border-white/10 bg-white/5 rounded-xl p-6 lg:p-8 shadow-lg backdrop-blur-md transition-all duration-300">
+            <h3 className="text-white font-semibold text-lg mb-4 lg:mb-6">Filtered Results ({resultsCount})</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-h-80 overflow-y-auto">
+              {filteredItems.slice(0, 12).map(item => (
+                <div key={item.id} className="bg-white/5 border border-white/10 rounded-lg p-4 text-sm transition-all duration-200 hover:bg-white/10 hover:border-white/20">
+                  <div className="text-white font-medium mb-2">{item.title}</div>
+                  <div className="text-white/65 text-xs">
+                    {item.status} • {item.type} • {item.performance}
+                  </div>
+                </div>
+              ))}
+              {filteredItems.length > 12 && (
+                <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-sm text-center text-white/65 flex items-center justify-center">
+                  +{filteredItems.length - 12} more...
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
