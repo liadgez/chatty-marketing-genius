@@ -40,7 +40,9 @@ export function ChatInterface() {
 
   const onModeSelect = (mode: typeof currentMode) => {
     setCurrentMode(mode);
-    handleModeSelection(mode);
+    if (mode) {
+      handleModeSelection(mode);
+    }
   };
 
   useEffect(() => {
@@ -49,16 +51,33 @@ export function ChatInterface() {
     }
   }, [messages, isLoading]);
 
+  const getPlaceholder = () => {
+    if (!currentMode) {
+      return "Please select a mode above to start chatting...";
+    }
+    
+    switch (chatStep.step) {
+      case "sheet-selection":
+        return "Enter the number of the sheet you want to analyze...";
+      case "data-search":
+        return "Describe what data you're looking for...";
+      default:
+        return `Ask me anything in ${currentMode} mode...`;
+    }
+  };
+
   return (
     <div className="h-full flex flex-col bg-transparent">
       {/* Chat Header */}
-      <div className="h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
+      <div className="shrink-0 h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
         <div className="flex items-center space-x-3">
-          <Bot className="w-6 h-6 text-blue-400" />
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <Bot className="w-5 h-5 text-white" />
+          </div>
           <div>
             <h3 className="font-semibold text-white text-lg">AI Assistant</h3>
             {currentMode && (
-              <p className="text-sm text-white/65 capitalize">{currentMode} Mode Active</p>
+              <p className="text-sm text-white/65 capitalize">{currentMode} Mode</p>
             )}
           </div>
         </div>
@@ -75,7 +94,7 @@ export function ChatInterface() {
       </ScrollArea>
 
       {/* Mode Selector - Always visible above input */}
-      <div className="px-6 pb-4 bg-transparent">
+      <div className="shrink-0 px-6 pb-4 bg-transparent">
         <ModeSelector 
           currentMode={currentMode}
           onModeSelect={onModeSelect}
@@ -84,19 +103,15 @@ export function ChatInterface() {
       </div>
 
       {/* Input */}
-      <ChatInput
-        value={input}
-        onChange={setInput}
-        onSend={handleSendMessage}
-        disabled={isLoading}
-        placeholder={
-          !currentMode 
-            ? "Please select a mode first to start chatting..."
-            : chatStep.step === "sheet-selection"
-            ? "Enter the number of the sheet you want to analyze..."
-            : "Ask me anything based on your selected mode..."
-        }
-      />
+      <div className="shrink-0">
+        <ChatInput
+          value={input}
+          onChange={setInput}
+          onSend={handleSendMessage}
+          disabled={isLoading || !currentMode}
+          placeholder={getPlaceholder()}
+        />
+      </div>
     </div>
   );
 }

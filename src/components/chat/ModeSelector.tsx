@@ -35,30 +35,37 @@ export function ModeSelector({ currentMode, onModeSelect, disabled }: ModeSelect
   ];
 
   return (
-    <div className="flex flex-wrap gap-3 p-4 glass-effect border border-white/10 rounded-xl">
-      <div className="w-full text-sm text-white/75 mb-2">Choose your mode:</div>
-      {modes.map((mode) => {
-        const Icon = mode.icon;
-        const isSelected = currentMode === mode.id;
-        
-        return (
-          <Button
-            key={mode.id}
-            onClick={() => onModeSelect(mode.id)}
-            disabled={disabled}
-            className={`
-              flex-1 min-w-24 h-16 flex flex-col items-center justify-center gap-1 text-white font-medium
-              ${isSelected 
-                ? `bg-gradient-to-r ${mode.color} shadow-lg shadow-blue-500/25` 
-                : 'glass-effect hover:bg-white/10 border border-white/20'
-              }
-            `}
-          >
-            <Icon className="w-4 h-4" />
-            <span className="text-xs">{mode.label}</span>
-          </Button>
-        );
-      })}
+    <div className="glass-effect border border-white/10 rounded-xl p-4">
+      <div className="text-sm text-white/75 mb-3 font-medium">Choose your mode:</div>
+      <div className="flex gap-2">
+        {modes.map((mode) => {
+          const Icon = mode.icon;
+          const isSelected = currentMode === mode.id;
+          
+          return (
+            <Button
+              key={mode.id}
+              onClick={() => onModeSelect(mode.id)}
+              disabled={disabled}
+              variant="ghost"
+              className={`
+                flex-1 h-14 flex flex-col items-center justify-center gap-1 text-white font-medium transition-all duration-200 border
+                ${isSelected 
+                  ? `bg-gradient-to-r ${mode.color} border-white/30 shadow-lg scale-105` 
+                  : 'hover:bg-white/10 border-white/20 hover:border-white/30 hover:scale-102'
+                }
+              `}
+              aria-pressed={isSelected}
+              aria-label={`${mode.label} mode: ${mode.description}`}
+            >
+              <Icon className={`w-4 h-4 transition-colors duration-200 ${isSelected ? 'text-white' : 'text-white/80'}`} />
+              <span className={`text-xs transition-colors duration-200 ${isSelected ? 'text-white' : 'text-white/80'}`}>
+                {mode.label}
+              </span>
+            </Button>
+          );
+        })}
+      </div>
     </div>
   );
 }

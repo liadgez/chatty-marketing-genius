@@ -85,7 +85,7 @@ export function MetricCards() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {Array.from({ length: 4 }).map((_, index) => (
           <SkeletonCard key={index} />
         ))}
@@ -98,12 +98,12 @@ export function MetricCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
       {metrics.map((metric) => (
         <Card 
           key={metric.id}
-          className={`glass-effect border-white/10 bg-white/10 hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group cursor-pointer transform hover:scale-[1.03] active:scale-[0.98] rounded-xl backdrop-blur-md ${
-            selectedMetric === metric.id ? 'border-blue-500/50 shadow-xl shadow-blue-500/20 scale-[1.03]' : ''
+          className={`glass-effect border-white/10 bg-white/10 hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] rounded-xl backdrop-blur-md ${
+            selectedMetric === metric.id ? 'border-blue-500/50 shadow-xl shadow-blue-500/20 scale-[1.02]' : ''
           }`}
           role="button"
           tabIndex={0}
@@ -111,11 +111,11 @@ export function MetricCards() {
           onClick={() => handleMetricClick(metric.id, metric.action)}
           onKeyDown={(e) => handleKeyDown(e, metric.id, metric.action)}
         >
-          <CardContent className="p-6 md:p-7 lg:p-8">
-            <div className="flex items-start justify-between space-x-4 md:space-x-5">
+          <CardContent className="p-4 md:p-6">
+            <div className="flex items-start justify-between space-x-3 md:space-x-4">
               <div className="flex-1 min-w-0">
-                <p className="text-sm md:text-base text-white/70 font-medium mb-3 md:mb-4 truncate">{metric.title}</p>
-                <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-5 group-hover:text-blue-300 transition-colors duration-300">
+                <p className="text-sm md:text-base text-white/70 font-medium mb-2 md:mb-3 truncate">{metric.title}</p>
+                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 group-hover:text-blue-300 transition-colors duration-300">
                   {metric.value}
                 </p>
                 <div className="flex items-center justify-between">
@@ -125,14 +125,14 @@ export function MetricCards() {
                     {metric.change}
                   </p>
                 </div>
-                <p className="text-xs md:text-sm text-white/50 mt-2 md:mt-3">
+                <p className="text-xs md:text-sm text-white/50 mt-1 md:mt-2">
                   {metric.description}
                 </p>
               </div>
-              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-300 shrink-0 ${
+              <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-300 shrink-0 ${
                 selectedMetric === metric.id ? 'from-blue-600/40 to-purple-600/40 scale-110' : ''
               }`}>
-                <metric.icon className={`w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-blue-400 group-hover:text-blue-300 transition-all duration-300 ${
+                <metric.icon className={`w-5 h-5 md:w-6 md:h-6 text-blue-400 group-hover:text-blue-300 transition-all duration-300 ${
                   selectedMetric === metric.id ? 'scale-110' : ''
                 }`} aria-hidden="true" />
               </div>
