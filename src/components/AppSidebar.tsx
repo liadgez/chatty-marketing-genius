@@ -18,7 +18,6 @@ import {
   FileText,
   GitBranch,
   Brain,
-  MessageSquare,
 } from "lucide-react";
 
 interface AppSidebarProps {
@@ -39,26 +38,26 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
   const { state } = useSidebar();
 
   return (
-    <Sidebar className="border-r border-slate-200 bg-slate-900">
+    <Sidebar className="border-r border-white/10 bg-sidebar">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-slate-400 font-semibold">
+          <SidebarGroupLabel className="text-sidebar-foreground/70 font-semibold text-xs uppercase tracking-wider px-3 py-4">
             Analytics Platform
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     onClick={() => setActiveSection(item.id)}
-                    className={`w-full justify-start text-slate-300 hover:text-white hover:bg-slate-800 transition-colors ${
+                    className={`w-full justify-start text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-all duration-200 hover-glow rounded-lg mx-2 ${
                       activeSection === item.id
-                        ? "bg-blue-600 text-white font-medium"
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium shadow-lg shadow-blue-500/25"
                         : ""
                     }`}
                   >
                     <item.icon className="mr-3 h-5 w-5" />
-                    {state !== "collapsed" && <span>{item.title}</span>}
+                    {state !== "collapsed" && <span className="font-medium">{item.title}</span>}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
