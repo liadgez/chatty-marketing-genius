@@ -4,10 +4,12 @@ import { Bot } from "lucide-react";
 
 import { useChatState } from "@/hooks/useChatState";
 import { useChatHandlers } from "@/hooks/useChatHandlers";
+import { useChatValidation } from "@/hooks/useChatValidation";
 import { ChatMessage } from "./chat/ChatMessage";
 import { LoadingIndicator } from "./chat/LoadingIndicator";
 import { ModeSelector } from "./chat/ModeSelector";
 import { ChatInput } from "./chat/ChatInput";
+import { ValidationError } from "./chat/ValidationError";
 import { ChatErrorBoundary } from "./ChatErrorBoundary";
 
 export function ChatInterface() {
@@ -27,6 +29,8 @@ export function ChatInterface() {
     clearInput,
   } = useChatState();
 
+  const { validationError, validateAndSanitize, clearValidationError } = useChatValidation();
+
   const { handleSendMessage, handleModeSelection } = useChatHandlers({
     input,
     currentMode,
@@ -39,9 +43,33 @@ export function ChatInterface() {
   });
 
   const onModeSelect = (mode: typeof currentMode) => {
+    clearValidationError();
     setCurrentMode(mode);
     if (mode) {
       handleModeSelection(mode);
+    }
+  };
+
+  const handleValidatedSendMessage = () => {
+    const { isValid, sanitizedInput } = validateAndSanitize(input);
+    
+    if (!isValid) {
+      return;
+    }
+
+    // Update input with sanitized version if different
+    if (sanitizedInput !== input) {
+      setInput(sanitizedInput);
+    }
+
+    handleSendMessage();
+  };
+
+  const handleInputChange = (value: string) => {
+    setInput(value);
+    // Clear validation error when user starts typing
+    if (validationError) {
+      clearValidationError();
     }
   };
 
@@ -103,12 +131,19 @@ export function ChatInterface() {
           />
         </div>
 
+        {/* Validation Error */}
+        {validationError && (
+          <div className="shrink-0 px-6 pb-2">
+            <ValidationError message={validationError} />
+          </div>
+        )}
+
         {/* Input */}
         <div className="shrink-0">
           <ChatInput
             value={input}
-            onChange={setInput}
-            onSend={handleSendMessage}
+            onChange={handleInputChange}
+            onSend={handleValidatedSendMessage}
             disabled={isLoading || !currentMode}
             placeholder={getPlaceholder()}
           />
