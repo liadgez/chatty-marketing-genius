@@ -1,3 +1,4 @@
+
 import { useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Bot } from "lucide-react";
@@ -6,7 +7,7 @@ import { useChatState } from "@/hooks/useChatState";
 import { useChatHandlers } from "@/hooks/useChatHandlers";
 import { useChatValidation } from "@/hooks/useChatValidation";
 import { ChatMessage } from "./chat/ChatMessage";
-import { LoadingIndicator } from "./chat/LoadingIndicator";
+import { EnhancedLoadingIndicator } from "./chat/EnhancedLoadingIndicator";
 import { ModeSelector } from "./chat/ModeSelector";
 import { ChatInput } from "./chat/ChatInput";
 import { ValidationError } from "./chat/ValidationError";
@@ -94,6 +95,17 @@ export function ChatInterface() {
     }
   };
 
+  const getLoadingMessage = () => {
+    switch (chatStep.step) {
+      case "sheet-discovery":
+        return "Discovering available data sheets...";
+      case "processing":
+        return "Processing your request...";
+      default:
+        return currentMode === "analysis" ? "Analyzing data..." : "AI is thinking...";
+    }
+  };
+
   return (
     <ChatErrorBoundary onRetry={() => window.location.reload()}>
       <div className="h-full flex flex-col bg-transparent">
@@ -118,7 +130,12 @@ export function ChatInterface() {
             {messages.map((message) => (
               <ChatMessage key={message.id} message={message} />
             ))}
-            {isLoading && <LoadingIndicator />}
+            {isLoading && (
+              <EnhancedLoadingIndicator 
+                message={getLoadingMessage()}
+                showDots={true}
+              />
+            )}
           </div>
         </ScrollArea>
 
