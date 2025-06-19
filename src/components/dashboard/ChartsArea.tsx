@@ -32,7 +32,7 @@ const chartConfig = {
 
 function ChartSkeleton() {
   return (
-    <Card className="glass-effect border-white/10 bg-black/20">
+    <Card className="glass-effect border-white/20 bg-white/5">
       <CardHeader>
         <Skeleton className="h-6 w-40 bg-white/20" />
       </CardHeader>
@@ -53,13 +53,11 @@ function ChartSkeleton() {
 
 export function ChartsArea() {
   const [isLoading, setIsLoading] = useState(true);
-  const [hasData, setHasData] = useState(true); // Toggle this to test empty state
+  const [hasData, setHasData] = useState(true);
 
   useEffect(() => {
-    // Simulate chart data loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Simulate empty state - set to false to test empty state
       setHasData(true);
     }, 2000);
 
@@ -68,12 +66,10 @@ export function ChartsArea() {
 
   const handleCreateTest = () => {
     console.log("Creating new test from charts area...");
-    // Future: Add actual test creation logic
   };
 
   const handleViewGuide = () => {
     console.log("Opening test setup guide...");
-    // Future: Add guide navigation logic
   };
 
   if (isLoading) {
@@ -97,78 +93,84 @@ export function ChartsArea() {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
       {/* Bar Chart */}
-      <Card className="glass-effect border-white/10 bg-black/20">
-        <CardHeader className="p-4 md:p-6">
+      <Card className="glass-effect border-white/20 bg-white/5">
+        <CardHeader className="p-4 md:p-6 pb-2">
           <CardTitle className="text-white font-semibold text-lg">A/B Test Performance</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 md:p-6 pt-0">
-          <ChartContainer config={chartConfig} className="h-64 md:h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={testPerformanceData}>
-                <XAxis 
-                  dataKey="name" 
-                  tick={{ fill: '#ffffff99', fontSize: 12 }}
-                  axisLine={{ stroke: '#ffffff20' }}
-                />
-                <YAxis 
-                  tick={{ fill: '#ffffff99', fontSize: 12 }}
-                  axisLine={{ stroke: '#ffffff20' }}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar 
-                  dataKey="value" 
-                  fill="url(#gradient1)"
-                  radius={[4, 4, 0, 0]}
-                  className="hover:brightness-110 transition-all duration-200"
-                />
-                <defs>
-                  <linearGradient id="gradient1" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#06B6D4" />
-                    <stop offset="100%" stopColor="#3B82F6" />
-                  </linearGradient>
-                </defs>
-              </BarChart>
-            </ResponsiveContainer>
-          </ChartContainer>
+        <CardContent className="p-4 md:p-6 pt-2">
+          <div className="h-64 md:h-80 w-full overflow-hidden">
+            <ChartContainer config={chartConfig} className="h-full w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={testPerformanceData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <XAxis 
+                    dataKey="name" 
+                    tick={{ fill: '#ffffff99', fontSize: 12 }}
+                    axisLine={{ stroke: '#ffffff20' }}
+                  />
+                  <YAxis 
+                    tick={{ fill: '#ffffff99', fontSize: 12 }}
+                    axisLine={{ stroke: '#ffffff20' }}
+                    width={30}
+                  />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar 
+                    dataKey="value" 
+                    fill="url(#gradient1)"
+                    radius={[4, 4, 0, 0]}
+                    className="hover:brightness-110 transition-all duration-200"
+                  />
+                  <defs>
+                    <linearGradient id="gradient1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#06B6D4" />
+                      <stop offset="100%" stopColor="#3B82F6" />
+                    </linearGradient>
+                  </defs>
+                </BarChart>
+              </ResponsiveContainer>
+            </ChartContainer>
+          </div>
         </CardContent>
       </Card>
 
       {/* Area Chart */}
-      <Card className="glass-effect border-white/10 bg-black/20">
-        <CardHeader className="p-4 md:p-6">
+      <Card className="glass-effect border-white/20 bg-white/5">
+        <CardHeader className="p-4 md:p-6 pb-2">
           <CardTitle className="text-white font-semibold text-lg">Real-time Conversions</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 md:p-6 pt-0">
-          <ChartContainer config={chartConfig} className="h-64 md:h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={conversionsData}>
-                <XAxis 
-                  dataKey="time" 
-                  tick={{ fill: '#ffffff99', fontSize: 12 }}
-                  axisLine={{ stroke: '#ffffff20' }}
-                />
-                <YAxis 
-                  tick={{ fill: '#ffffff99', fontSize: 12 }}
-                  axisLine={{ stroke: '#ffffff20' }}
-                />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Area 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#06B6D4" 
-                  strokeWidth={2}
-                  fill="url(#gradient2)"
-                  className="hover:brightness-110 transition-all duration-200"
-                />
-                <defs>
-                  <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#06B6D4" stopOpacity={0.3} />
-                    <stop offset="100%" stopColor="#06B6D4" stopOpacity={0.05} />
-                  </linearGradient>
-                </defs>
-              </AreaChart>
-            </ResponsiveContainer>
-          </ChartContainer>
+        <CardContent className="p-4 md:p-6 pt-2">
+          <div className="h-64 md:h-80 w-full overflow-hidden">
+            <ChartContainer config={chartConfig} className="h-full w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={conversionsData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <XAxis 
+                    dataKey="time" 
+                    tick={{ fill: '#ffffff99', fontSize: 12 }}
+                    axisLine={{ stroke: '#ffffff20' }}
+                  />
+                  <YAxis 
+                    tick={{ fill: '#ffffff99', fontSize: 12 }}
+                    axisLine={{ stroke: '#ffffff20' }}
+                    width={30}
+                  />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Area 
+                    type="monotone" 
+                    dataKey="value" 
+                    stroke="#06B6D4" 
+                    strokeWidth={2}
+                    fill="url(#gradient2)"
+                    className="hover:brightness-110 transition-all duration-200"
+                  />
+                  <defs>
+                    <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#06B6D4" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#06B6D4" stopOpacity={0.05} />
+                    </linearGradient>
+                  </defs>
+                </AreaChart>
+              </ResponsiveContainer>
+            </ChartContainer>
+          </div>
         </CardContent>
       </Card>
     </div>

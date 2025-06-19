@@ -150,7 +150,7 @@ const Index = () => {
                   }`
                 : 'w-96 relative'
               }
-              glass-effect border-l border-white/10 flex flex-col bg-black/40 backdrop-blur-xl
+              glass-effect border-l border-white/10 flex flex-col bg-white/5 backdrop-blur-xl
             `}>
               {/* TerrificAI Branding at top of chat */}
               <div className="p-4 md:p-6 border-b border-white/10">

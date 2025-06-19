@@ -51,13 +51,12 @@ const metrics = [
 export function MetricCards() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
-  const [hasData, setHasData] = useState(true); // Toggle this to test empty state
+  const [hasData, setHasData] = useState(true);
 
   useEffect(() => {
     // Simulate data loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // Simulate empty state - set to false to test empty state
       setHasData(true);
     }, 1500);
 
@@ -68,13 +67,9 @@ export function MetricCards() {
     console.log(`Metric clicked: ${metricId} - ${action}`);
     setSelectedMetric(metricId);
     
-    // Reset selection after a short delay for visual feedback
     setTimeout(() => {
       setSelectedMetric(null);
     }, 200);
-    
-    // Here you would typically navigate to detailed view or trigger an action
-    // For now, we'll just log the action
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, metricId: string, action: string) => {
@@ -86,7 +81,6 @@ export function MetricCards() {
 
   const handleCreateExperiment = () => {
     console.log("Creating first experiment...");
-    // Future: Add actual experiment creation logic
   };
 
   if (isLoading) {
@@ -108,7 +102,7 @@ export function MetricCards() {
       {metrics.map((metric) => (
         <Card 
           key={metric.id}
-          className={`glass-effect border-white/10 bg-black/20 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-200 group cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] ${
+          className={`glass-effect border-white/20 bg-white/5 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-200 group cursor-pointer transform hover:scale-[1.02] active:scale-[0.98] ${
             selectedMetric === metric.id ? 'border-blue-500/70 shadow-lg shadow-blue-500/20 scale-[1.02]' : ''
           }`}
           role="button"
@@ -120,24 +114,19 @@ export function MetricCards() {
           <CardContent className="p-4 md:p-6">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
-                <div className="flex items-center space-x-2 mb-2">
+                <div className="flex items-center justify-between mb-2">
                   <p className="text-sm text-white/65 font-medium truncate">{metric.title}</p>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <span className="text-xs text-blue-400 bg-blue-400/10 px-2 py-1 rounded-full">
-                      Click to view
-                    </span>
-                  </div>
                 </div>
                 <p className="text-2xl md:text-3xl font-bold text-white mt-2 group-hover:text-blue-300 transition-colors duration-200">
                   {metric.value}
                 </p>
-                <div className="flex items-center justify-between mt-1">
+                <div className="flex items-center justify-between mt-2">
                   <p className={`text-sm font-medium ${
                     metric.changeType === 'positive' ? 'text-green-400' : 'text-red-400'
                   }`}>
                     {metric.change}
                   </p>
-                  <p className="text-xs text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <p className="text-xs text-white/50">
                     {metric.description}
                   </p>
                 </div>
@@ -149,11 +138,6 @@ export function MetricCards() {
                   selectedMetric === metric.id ? 'scale-110' : ''
                 }`} aria-hidden="true" />
               </div>
-            </div>
-            
-            {/* Click indicator */}
-            <div className="mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <div className="h-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 rounded-full"></div>
             </div>
           </CardContent>
         </Card>

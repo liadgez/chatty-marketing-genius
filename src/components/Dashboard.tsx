@@ -34,7 +34,7 @@ export function Dashboard() {
       <ActionBar />
       
       {/* Search and Filter Section */}
-      <div className="glass-effect border-white/10 bg-black/20 rounded-lg p-4 md:p-6">
+      <div className="glass-effect border-white/20 bg-white/5 rounded-lg p-4 md:p-6">
         <SearchAndFilter
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -50,7 +50,7 @@ export function Dashboard() {
       
       {/* Debug info - remove in production */}
       {hasActiveFilters && (
-        <div className="glass-effect border-white/10 bg-black/20 rounded-lg p-4">
+        <div className="glass-effect border-white/20 bg-white/5 rounded-lg p-4">
           <h3 className="text-white font-medium mb-2">Filtered Results ({resultsCount})</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-h-64 overflow-y-auto">
             {filteredItems.slice(0, 12).map(item => (
