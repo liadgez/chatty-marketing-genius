@@ -1,4 +1,3 @@
-
 import { ChatMode, ChatStep, Message } from "./useChatState";
 
 interface UseChatHandlersProps {
@@ -35,9 +34,7 @@ export const useChatHandlers = ({
     const modeMessages = {
       analysis: "Perfect! I'm now in Analysis Mode. I can help you discover and analyze your data sheets. What would you like to analyze?",
       creative: "Great! I'm now in Creative Mode. I can help you brainstorm ideas, create compelling content, and think outside the box. What creative challenge are you working on?",
-      strategy: "Excellent! I'm now in Strategy Mode. I can help you develop strategic recommendations, plan campaigns, and optimize your marketing approach. What strategic question do you have?",
-      plan: "Perfect! I'm now in Plan Mode. I can help you create detailed project plans, roadmaps, and structured approaches to your marketing goals. What would you like to plan?",
-      execute: "Great! I'm now in Execute Mode. I can help you implement strategies, execute campaigns, and take action on your marketing initiatives. What would you like to execute?"
+      strategy: "Excellent! I'm now in Strategy Mode. I can help you develop strategic recommendations, plan campaigns, and optimize your marketing approach. What strategic question do you have?"
     };
 
     if (mode) {
@@ -126,46 +123,10 @@ export const useChatHandlers = ({
     }, 1800);
   };
 
-  const processPlanMode = async () => {
-    setTimeout(() => {
-      const planResponses = [
-        "📋 **Comprehensive Plan Generated**\n\n**Phase 1: Research & Discovery (Week 1-2)**\n• Market analysis\n• Competitor research\n• Audience segmentation\n\n**Phase 2: Strategy Development (Week 3-4)**\n• Campaign messaging\n• Channel selection\n• Budget allocation\n\n**Phase 3: Implementation (Week 5-8)**\n• Content creation\n• Campaign launch\n• Performance monitoring\n\n**Deliverables**: Strategy document, creative assets, performance dashboard\n\nShould I elaborate on any specific phase?",
-        "🎯 **Project Roadmap Created**\n\n**Objective**: Increase brand awareness by 40%\n\n**Timeline**: 12 weeks\n\n**Key Milestones**:\n✅ Week 2: Brand audit complete\n✅ Week 4: Creative concepts approved\n✅ Week 6: Campaign launch\n✅ Week 8: Mid-campaign optimization\n✅ Week 12: Final results & reporting\n\n**Resources Needed**: Design team, ad budget, analytics tools\n\nWant me to break down the weekly tasks?",
-        "📊 **Strategic Plan Framework**\n\n**1. Goal Definition**\n• Primary: Lead generation\n• Secondary: Brand awareness\n• KPIs: 500 qualified leads/month\n\n**2. Target Audience**\n• B2B decision makers\n• 35-55 years old\n• Mid to large companies\n\n**3. Channel Strategy**\n• LinkedIn advertising (40%)\n• Content marketing (30%)\n• Email campaigns (30%)\n\n**4. Budget**: $15,000/month\n\nReady to dive into implementation details?"
-      ];
-      
-      const randomResponse = planResponses[Math.floor(Math.random() * planResponses.length)];
-      addMessage({
-        type: "assistant",
-        content: randomResponse,
-        category: "task"
-      });
-      setIsLoading(false);
-    }, 1600);
-  };
-
-  const processExecuteMode = async () => {
-    setTimeout(() => {
-      const executeResponses = [
-        "🚀 **Execution Mode Activated**\n\n**Immediate Actions**:\n✅ Campaign setup initiated\n✅ Creative assets prepared\n✅ Tracking pixels installed\n✅ Landing page optimized\n\n**Next 24 Hours**:\n• Launch first ad set\n• Monitor initial performance\n• A/B test headlines\n\n**Status**: Ready to deploy\n\nShall I proceed with the campaign launch?",
-        "⚡ **Implementation In Progress**\n\n**Current Tasks**:\n🔄 Setting up Google Ads campaign\n🔄 Configuring Facebook pixel\n🔄 Creating email sequences\n\n**Completed**:\n✅ Landing page live\n✅ Analytics tracking active\n✅ Lead magnet uploaded\n\n**ETA**: 2 hours until full deployment\n\nNeed me to prioritize any specific component?",
-        "🎬 **Campaign Execution Dashboard**\n\n**Live Status**:\n• Ad spend: $247.50 (today)\n• Impressions: 12,450\n• Clicks: 186 (CTR: 1.49%)\n• Conversions: 8 (4.3% rate)\n\n**Active Optimizations**:\n🔧 Adjusting bid strategy\n🔧 Pausing low-performing ads\n🔧 Scaling winning creative\n\n**Recommendation**: Increase budget by 20% on top performer\n\nApprove the budget increase?"
-      ];
-      
-      const randomResponse = executeResponses[Math.floor(Math.random() * executeResponses.length)];
-      addMessage({
-        type: "assistant",
-        content: randomResponse,
-        category: "task"
-      });
-      setIsLoading(false);
-    }, 1400);
-  };
-
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return;
     
-    if (!currentMode && chatStep.step === "mode-selection") {
+    if (!currentMode) {
       addMessage({
         type: "user",
         content: input,
@@ -195,10 +156,6 @@ export const useChatHandlers = ({
       await processCreativeMode();
     } else if (currentMode === "strategy") {
       await processStrategyMode();
-    } else if (currentMode === "plan") {
-      await processPlanMode();
-    } else if (currentMode === "execute") {
-      await processExecuteMode();
     }
   };
 

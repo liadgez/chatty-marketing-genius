@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { BarChart3, Lightbulb, Target, FileText, Play } from "lucide-react";
+import { BarChart3, Lightbulb, Target } from "lucide-react";
 import { ChatMode } from "@/hooks/useChatState";
 
 interface ModeSelectorProps {
@@ -31,20 +31,6 @@ export function ModeSelector({ currentMode, onModeSelect, disabled }: ModeSelect
       icon: Target,
       description: "Strategic recommendations",
       color: "from-orange-600 to-orange-700"
-    },
-    {
-      id: "plan" as const,
-      label: "Plan",
-      icon: FileText,
-      description: "Create detailed plans",
-      color: "from-cyan-600 to-cyan-700"
-    },
-    {
-      id: "execute" as const,
-      label: "Execute",
-      icon: Play,
-      description: "Execute & implement",
-      color: "from-red-600 to-red-700"
     }
   ];
 

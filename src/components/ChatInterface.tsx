@@ -74,16 +74,14 @@ export function ChatInterface() {
         </div>
       </ScrollArea>
 
-      {/* Mode Selector - Right above input */}
-      {chatStep.step === "mode-selection" && (
-        <div className="px-6 pb-4 bg-transparent">
-          <ModeSelector 
-            currentMode={currentMode}
-            onModeSelect={onModeSelect}
-            disabled={isLoading}
-          />
-        </div>
-      )}
+      {/* Mode Selector - Always visible above input */}
+      <div className="px-6 pb-4 bg-transparent">
+        <ModeSelector 
+          currentMode={currentMode}
+          onModeSelect={onModeSelect}
+          disabled={isLoading}
+        />
+      </div>
 
       {/* Input */}
       <ChatInput
