@@ -22,7 +22,15 @@ import {
   Clock,
   Brain,
   Zap,
-  Globe
+  Globe,
+  GitBranch,
+  Layers,
+  Users,
+  Lightbulb,
+  TrendingDown,
+  CheckCircle,
+  AlertTriangle,
+  Activity
 } from "lucide-react";
 
 interface Report {
@@ -49,10 +57,33 @@ interface AdInsight {
   createdDate: Date;
 }
 
+interface SearchCluster {
+  id: string;
+  name: string;
+  intent: "informational" | "transactional" | "navigational" | "commercial";
+  queryCount: number;
+  totalVolume: number;
+  avgCTR: number;
+  topQueries: string[];
+  contentGap: boolean;
+  opportunity: "high" | "medium" | "low";
+}
+
+interface SemanticAnalysis {
+  id: string;
+  query: string;
+  volume: number;
+  clusterId: string;
+  embedding: number[];
+  intent: string;
+  commercialValue: number;
+}
+
 export function GeneratedOutputs() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<string>("all");
   const [adSearchTerm, setAdSearchTerm] = useState("");
+  const [semanticSearchTerm, setSemanticSearchTerm] = useState("");
 
   const reports: Report[] = [
     { id: "1", name: "ab_test_conversation.txt", type: "conversation", date: new Date(Date.now() - 2 * 60 * 60 * 1000), size: "45 KB", status: "ready" },
@@ -110,6 +141,61 @@ export function GeneratedOutputs() {
     }
   ];
 
+  const searchClusters: SearchCluster[] = [
+    {
+      id: "1",
+      name: "Feature Comparison",
+      intent: "commercial",
+      queryCount: 847,
+      totalVolume: 45200,
+      avgCTR: 3.2,
+      topQueries: ["vs competitor", "compare features", "best alternative", "feature comparison", "which is better"],
+      contentGap: false,
+      opportunity: "high"
+    },
+    {
+      id: "2", 
+      name: "Pricing Questions",
+      intent: "transactional",
+      queryCount: 623,
+      totalVolume: 38900,
+      avgCTR: 4.7,
+      topQueries: ["pricing plans", "how much cost", "subscription price", "free trial", "enterprise pricing"],
+      contentGap: true,
+      opportunity: "high"
+    },
+    {
+      id: "3",
+      name: "How-to Tutorials",
+      intent: "informational", 
+      queryCount: 1234,
+      totalVolume: 67800,
+      avgCTR: 2.8,
+      topQueries: ["how to setup", "tutorial guide", "step by step", "getting started", "configuration"],
+      contentGap: false,
+      opportunity: "medium"
+    },
+    {
+      id: "4",
+      name: "Integration Questions", 
+      intent: "informational",
+      queryCount: 456,
+      totalVolume: 23400,
+      avgCTR: 3.5,
+      topQueries: ["api integration", "connect with", "webhook setup", "third party", "zapier integration"],
+      contentGap: true,
+      opportunity: "medium"
+    }
+  ];
+
+  const semanticAnalytics = {
+    totalQueries: 15847,
+    clustersFound: 24,
+    contentGaps: 8,
+    highValueOpportunities: 12,
+    avgClusteringScore: 0.87
+  };
+
   const getTypeIcon = (type: string) => {
     switch (type) {
       case "conversation": return <MessageSquare className="w-4 h-4" />;
@@ -148,6 +234,25 @@ export function GeneratedOutputs() {
     }
   };
 
+  const getIntentColor = (intent: string) => {
+    switch (intent) {
+      case "informational": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+      case "transactional": return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      case "navigational": return "bg-purple-500/20 text-purple-400 border-purple-500/30";
+      case "commercial": return "bg-orange-500/20 text-orange-400 border-orange-500/30";
+      default: return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+    }
+  };
+
+  const getOpportunityColor = (opportunity: string) => {
+    switch (opportunity) {
+      case "high": return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+      case "medium": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"; 
+      case "low": return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+      default: return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+    }
+  };
+
   const filteredReports = reports.filter(report => {
     const matchesSearch = report.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === "all" || report.type === selectedType;
@@ -158,6 +263,11 @@ export function GeneratedOutputs() {
     ad.brand.toLowerCase().includes(adSearchTerm.toLowerCase()) ||
     ad.adText.toLowerCase().includes(adSearchTerm.toLowerCase()) ||
     ad.hook.toLowerCase().includes(adSearchTerm.toLowerCase())
+  );
+
+  const filteredClusters = searchClusters.filter(cluster =>
+    cluster.name.toLowerCase().includes(semanticSearchTerm.toLowerCase()) ||
+    cluster.topQueries.some(query => query.toLowerCase().includes(semanticSearchTerm.toLowerCase()))
   );
 
   return (
@@ -194,11 +304,12 @@ export function GeneratedOutputs() {
       </div>
 
       <Tabs defaultValue="files" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 card-gradient">
+        <TabsList className="grid w-full grid-cols-5 card-gradient">
           <TabsTrigger value="files" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">File Browser</TabsTrigger>
           <TabsTrigger value="preview" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Content Preview</TabsTrigger>
           <TabsTrigger value="analytics" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Download Analytics</TabsTrigger>
           <TabsTrigger value="ad-research" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Ad Research</TabsTrigger>
+          <TabsTrigger value="search-analysis" className="text-white data-[state=active]:bg-blue-600/30 data-[state=active]:text-blue-400">Search Analysis</TabsTrigger>
         </TabsList>
 
         <TabsContent value="files" className="space-y-6">
@@ -522,6 +633,231 @@ export function GeneratedOutputs() {
                   <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
                   <div>
                     <div className="text-sm font-medium text-orange-400">Insights</div>
+                    <div className="text-xs text-orange-400/70">Ready</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="search-analysis" className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-bold text-white">Semantic Search Term Analysis</h3>
+            <div className="flex items-center space-x-3">
+              <Badge variant="outline" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+                <Database className="w-3 h-3 mr-1" />
+                GSC Connected
+              </Badge>
+              <Button size="sm" className="bg-blue-600/20 text-blue-400 border border-blue-500/30 hover:bg-blue-600/30">
+                <Brain className="w-4 h-4 mr-2" />
+                Run Analysis
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <Card className="card-gradient">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-2">
+                  <Search className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm text-white/65">Total Queries</span>
+                </div>
+                <div className="text-2xl font-bold text-white mt-1">{semanticAnalytics.totalQueries.toLocaleString()}</div>
+              </CardContent>
+            </Card>
+            <Card className="card-gradient">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-2">
+                  <GitBranch className="w-4 h-4 text-purple-400" />
+                  <span className="text-sm text-white/65">Clusters Found</span>
+                </div>
+                <div className="text-2xl font-bold text-white mt-1">{semanticAnalytics.clustersFound}</div>
+              </CardContent>
+            </Card>
+            <Card className="card-gradient">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-2">
+                  <AlertTriangle className="w-4 h-4 text-yellow-400" />
+                  <span className="text-sm text-white/65">Content Gaps</span>
+                </div>
+                <div className="text-2xl font-bold text-white mt-1">{semanticAnalytics.contentGaps}</div>
+              </CardContent>
+            </Card>
+            <Card className="card-gradient">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-2">
+                  <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  <span className="text-sm text-white/65">Opportunities</span>
+                </div>
+                <div className="text-2xl font-bold text-white mt-1">{semanticAnalytics.highValueOpportunities}</div>
+              </CardContent>
+            </Card>
+            <Card className="card-gradient">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-2">
+                  <Activity className="w-4 h-4 text-orange-400" />
+                  <span className="text-sm text-white/65">Quality Score</span>
+                </div>
+                <div className="text-2xl font-bold text-white mt-1">{(semanticAnalytics.avgClusteringScore * 100).toFixed(0)}%</div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4" />
+              <Input
+                placeholder="Search clusters or queries..."
+                value={semanticSearchTerm}
+                onChange={(e) => setSemanticSearchTerm(e.target.value)}
+                className="pl-10 glass-effect border-white/20 focus:border-blue-500/50 focus:ring-blue-500/25 bg-background/50 text-white placeholder:text-white/50"
+              />
+            </div>
+            <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+              <Filter className="w-4 h-4 mr-2" />
+              Intent Filter
+            </Button>
+          </div>
+
+          <div className="space-y-4">
+            {filteredClusters.map((cluster) => (
+              <Card key={cluster.id} className="card-gradient hover:bg-white/10 transition-all border-white/10">
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg flex items-center justify-center">
+                          <Layers className="w-5 h-5 text-blue-400" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white text-lg">{cluster.name}</h4>
+                          <div className="flex items-center space-x-2 text-sm text-white/65">
+                            <Users className="w-3 h-3" />
+                            {cluster.queryCount} queries • {cluster.totalVolume.toLocaleString()} volume
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Badge className={getIntentColor(cluster.intent)}>
+                          {cluster.intent}
+                        </Badge>
+                        <Badge className={getOpportunityColor(cluster.opportunity)}>
+                          {cluster.opportunity} opportunity
+                        </Badge>
+                        {cluster.contentGap && (
+                          <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
+                            Content Gap
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <BarChart3 className="w-4 h-4 text-blue-400" />
+                          <span className="text-sm font-medium text-white">Volume</span>
+                        </div>
+                        <div className="text-lg font-bold text-blue-400">{cluster.totalVolume.toLocaleString()}</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <Target className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm font-medium text-white">Avg CTR</span>
+                        </div>
+                        <div className="text-lg font-bold text-emerald-400">{cluster.avgCTR}%</div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <Search className="w-4 h-4 text-purple-400" />
+                          <span className="text-sm font-medium text-white">Queries</span>
+                        </div>
+                        <div className="text-lg font-bold text-purple-400">{cluster.queryCount}</div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <Lightbulb className="w-4 h-4 text-yellow-400" />
+                        <span className="text-sm font-medium text-white">Top Queries</span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {cluster.topQueries.map((query, index) => (
+                          <Badge key={index} variant="outline" className="bg-white/5 text-white/80 border-white/20">
+                            {query}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                      <div className="flex items-center space-x-4">
+                        {cluster.contentGap ? (
+                          <div className="flex items-center space-x-2 text-red-400">
+                            <AlertTriangle className="w-4 h-4" />
+                            <span className="text-sm">Content gap identified</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center space-x-2 text-emerald-400">
+                            <CheckCircle className="w-4 h-4" />
+                            <span className="text-sm">Content exists</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                          <Eye className="w-4 h-4 mr-2" />
+                          Analyze
+                        </Button>
+                        {cluster.contentGap && (
+                          <Button size="sm" className="bg-blue-600/20 text-blue-400 border border-blue-500/30 hover:bg-blue-600/30">
+                            <Lightbulb className="w-4 h-4 mr-2" />
+                            Create Content
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="card-gradient">
+            <CardHeader>
+              <CardTitle className="text-white flex items-center space-x-2">
+                <Settings className="w-5 h-5" />
+                <span>Analysis Pipeline Status</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="flex items-center space-x-3 p-3 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                  <div>
+                    <div className="text-sm font-medium text-emerald-400">Data Collection</div>
+                    <div className="text-xs text-emerald-400/70">Active</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  <div>
+                    <div className="text-sm font-medium text-blue-400">Embedding</div>
+                    <div className="text-xs text-blue-400/70">Processing</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                  <div>
+                    <div className="text-sm font-medium text-purple-400">Clustering</div>
+                    <div className="text-xs text-purple-400/70">Complete</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-orange-500/10 rounded-lg border border-orange-500/20">
+                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                  <div>
+                    <div className="text-sm font-medium text-orange-400">Intent Classification</div>
                     <div className="text-xs text-orange-400/70">Ready</div>
                   </div>
                 </div>
