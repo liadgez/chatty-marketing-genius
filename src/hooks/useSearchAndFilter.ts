@@ -57,33 +57,33 @@ export function useSearchAndFilter<T extends SearchableItem>(items: T[]) {
     }
 
     // Apply date range filter
-    if (filters.dateRange && item.createdAt) {
+    if (filters.dateRange) {
       const now = new Date();
-      const itemDate = new Date(item.createdAt);
       
-      switch (filters.dateRange) {
-        case 'today':
-          filtered = filtered.filter(item => {
-            const itemDate = new Date(item.createdAt);
+      filtered = filtered.filter(item => {
+        if (!item.createdAt) return false;
+        
+        const itemDate = new Date(item.createdAt);
+        
+        switch (filters.dateRange) {
+          case 'today':
             return itemDate.toDateString() === now.toDateString();
-          });
-          break;
-        case 'week':
-          const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-          filtered = filtered.filter(item => {
-            const itemDate = new Date(item.createdAt);
+          case 'week':
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
             return itemDate >= weekAgo;
-          });
-          break;
-        case 'month':
-          const monthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-          filtered = filtered.filter(item => {
-            const itemDate = new Date(item.createdAt);
+          case 'month':
+            const monthAgo = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
             return itemDate >= monthAgo;
-          });
-          break;
-        // Add more date range cases as needed
-      }
+          case 'quarter':
+            const quarterAgo = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+            return itemDate >= quarterAgo;
+          case 'year':
+            const yearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
+            return itemDate >= yearAgo;
+          default:
+            return true;
+        }
+      });
     }
 
     return filtered;
