@@ -44,19 +44,19 @@ const errorLogs = [
 export function SystemMonitoring() {
   const getLogLevelColor = (level: string) => {
     switch (level) {
-      case "ERROR": return "text-red-600 bg-red-50";
-      case "WARN": return "text-yellow-600 bg-yellow-50";
-      case "INFO": return "text-blue-600 bg-blue-50";
-      default: return "text-gray-600 bg-gray-50";
+      case "ERROR": return "text-red-300 bg-red-500/20 border border-red-500/30";
+      case "WARN": return "text-yellow-300 bg-yellow-500/20 border border-yellow-500/30";
+      case "INFO": return "text-blue-300 bg-blue-500/20 border border-blue-500/30";
+      default: return "text-white/70 bg-white/10 border border-white/20";
     }
   };
 
   return (
-    <div className="space-y-6">
+    <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold text-slate-800">System Monitoring</h2>
+        <h2 className="text-3xl font-bold text-white">System Monitoring</h2>
         <div className="flex space-x-2">
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-green-500/20 text-green-300 border-green-500/30">
             <CheckCircle className="w-3 h-3 mr-1" />
             System Healthy
           </Badge>
@@ -65,83 +65,84 @@ export function SystemMonitoring() {
 
       {/* System Status Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+        <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
-            <CardTitle className="text-green-800 text-sm font-medium flex items-center">
+            <CardTitle className="text-green-300 text-sm font-medium flex items-center">
               <Server className="w-4 h-4 mr-2" />
               System Status
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-900">Operational</div>
-            <p className="text-green-600 text-sm">All services running</p>
+            <div className="text-2xl font-bold text-white">Operational</div>
+            <p className="text-white/70 text-sm">All services running</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+        <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
-            <CardTitle className="text-blue-800 text-sm font-medium flex items-center">
+            <CardTitle className="text-blue-300 text-sm font-medium flex items-center">
               <Activity className="w-4 h-4 mr-2" />
               CPU Usage
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">47%</div>
-            <p className="text-blue-600 text-sm">Normal load</p>
+            <div className="text-2xl font-bold text-white">47%</div>
+            <p className="text-white/70 text-sm">Normal load</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200">
+        <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
-            <CardTitle className="text-purple-800 text-sm font-medium flex items-center">
+            <CardTitle className="text-purple-300 text-sm font-medium flex items-center">
               <Database className="w-4 h-4 mr-2" />
               Memory Usage
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-900">72%</div>
-            <p className="text-purple-600 text-sm">Within limits</p>
+            <div className="text-2xl font-bold text-white">72%</div>
+            <p className="text-white/70 text-sm">Within limits</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-orange-50 to-orange-100 border-orange-200">
+        <Card className="glass-effect border-white/10">
           <CardHeader className="pb-3">
-            <CardTitle className="text-orange-800 text-sm font-medium flex items-center">
+            <CardTitle className="text-orange-300 text-sm font-medium flex items-center">
               <Wifi className="w-4 h-4 mr-2" />
               Network I/O
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-900">27 MB/s</div>
-            <p className="text-orange-600 text-sm">Stable connection</p>
+            <div className="text-2xl font-bold text-white">27 MB/s</div>
+            <p className="text-white/70 text-sm">Stable connection</p>
           </CardContent>
         </Card>
       </div>
 
       <Tabs defaultValue="metrics" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="metrics">Performance Metrics</TabsTrigger>
-          <TabsTrigger value="logs">System Logs</TabsTrigger>
-          <TabsTrigger value="alerts">Alerts & Notifications</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3 glass-effect border-white/10">
+          <TabsTrigger value="metrics" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Performance Metrics</TabsTrigger>
+          <TabsTrigger value="logs" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">System Logs</TabsTrigger>
+          <TabsTrigger value="alerts" className="text-white data-[state=active]:bg-white/20 data-[state=active]:text-white">Alerts & Notifications</TabsTrigger>
         </TabsList>
 
         <TabsContent value="metrics" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800">System Resources</CardTitle>
+                <CardTitle className="text-white">System Resources</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={systemMetrics}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="time" stroke="#64748b" />
-                    <YAxis stroke="#64748b" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                    <XAxis dataKey="time" stroke="rgba(255,255,255,0.7)" />
+                    <YAxis stroke="rgba(255,255,255,0.7)" />
                     <Tooltip 
                       contentStyle={{ 
-                        backgroundColor: '#ffffff', 
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px'
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: 'white'
                       }} 
                     />
                     <Line type="monotone" dataKey="cpu" stroke="#3b82f6" strokeWidth={2} name="CPU %" />
@@ -152,21 +153,22 @@ export function SystemMonitoring() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800">Disk Usage Trend</CardTitle>
+                <CardTitle className="text-white">Disk Usage Trend</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={systemMetrics}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="time" stroke="#64748b" />
-                    <YAxis stroke="#64748b" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                    <XAxis dataKey="time" stroke="rgba(255,255,255,0.7)" />
+                    <YAxis stroke="rgba(255,255,255,0.7)" />
                     <Tooltip 
                       contentStyle={{ 
-                        backgroundColor: '#ffffff', 
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px'
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '8px',
+                        color: 'white'
                       }} 
                     />
                     <Area type="monotone" dataKey="disk" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.3} />
@@ -176,9 +178,9 @@ export function SystemMonitoring() {
             </Card>
           </div>
 
-          <Card>
+          <Card className="glass-effect border-white/10">
             <CardHeader>
-              <CardTitle className="text-slate-800">Service Health Checks</CardTitle>
+              <CardTitle className="text-white">Service Health Checks</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -190,20 +192,20 @@ export function SystemMonitoring() {
                   { service: "File Storage", status: "warning", response: "< 200ms" },
                   { service: "Analytics Engine", status: "healthy", response: "< 150ms" },
                 ].map((service) => (
-                  <div key={service.service} className="p-4 bg-slate-50 rounded-lg">
+                  <div key={service.service} className="p-4 bg-white/5 border border-white/10 rounded-lg">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-slate-800">{service.service}</h4>
+                      <h4 className="font-medium text-white">{service.service}</h4>
                       <Badge 
                         className={
                           service.status === "healthy" 
-                            ? "bg-green-100 text-green-800" 
-                            : "bg-yellow-100 text-yellow-800"
+                            ? "bg-green-500/20 text-green-300 border border-green-500/30" 
+                            : "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30"
                         }
                       >
                         {service.status}
                       </Badge>
                     </div>
-                    <p className="text-sm text-slate-600">Response: {service.response}</p>
+                    <p className="text-sm text-white/70">Response: {service.response}</p>
                   </div>
                 ))}
               </div>
@@ -212,9 +214,9 @@ export function SystemMonitoring() {
         </TabsContent>
 
         <TabsContent value="logs" className="space-y-6">
-          <Card>
+          <Card className="glass-effect border-white/10">
             <CardHeader>
-              <CardTitle className="text-slate-800 flex items-center">
+              <CardTitle className="text-white flex items-center">
                 <Clock className="w-5 h-5 mr-2" />
                 Recent System Logs
               </CardTitle>
@@ -223,17 +225,17 @@ export function SystemMonitoring() {
               <ScrollArea className="h-96">
                 <div className="space-y-2">
                   {errorLogs.map((log, index) => (
-                    <div key={index} className="p-3 bg-slate-50 rounded-lg border-l-4 border-slate-300">
+                    <div key={index} className="p-3 bg-white/5 rounded-lg border-l-4 border-white/20">
                       <div className="flex items-center justify-between mb-1">
                         <div className="flex items-center space-x-2">
                           <Badge className={getLogLevelColor(log.level)}>
                             {log.level}
                           </Badge>
-                          <span className="text-sm text-slate-600">{log.component}</span>
+                          <span className="text-sm text-white/70">{log.component}</span>
                         </div>
-                        <span className="text-sm text-slate-500">{log.timestamp}</span>
+                        <span className="text-sm text-white/50">{log.timestamp}</span>
                       </div>
-                      <p className="text-sm text-slate-800">{log.message}</p>
+                      <p className="text-sm text-white">{log.message}</p>
                     </div>
                   ))}
                 </div>
@@ -244,57 +246,57 @@ export function SystemMonitoring() {
 
         <TabsContent value="alerts" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800 flex items-center">
-                  <AlertTriangle className="w-5 h-5 mr-2 text-yellow-600" />
+                <CardTitle className="text-white flex items-center">
+                  <AlertTriangle className="w-5 h-5 mr-2 text-yellow-400" />
                   Active Alerts
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-medium text-yellow-800">Memory Usage High</h4>
-                      <Badge className="bg-yellow-100 text-yellow-800">Warning</Badge>
+                      <h4 className="font-medium text-yellow-300">Memory Usage High</h4>
+                      <Badge className="bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">Warning</Badge>
                     </div>
-                    <p className="text-sm text-yellow-700">Memory usage at 72% - approaching threshold</p>
+                    <p className="text-sm text-yellow-200">Memory usage at 72% - approaching threshold</p>
                   </div>
                   
-                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-medium text-blue-800">High Traffic Detected</h4>
-                      <Badge className="bg-blue-100 text-blue-800">Info</Badge>
+                      <h4 className="font-medium text-blue-300">High Traffic Detected</h4>
+                      <Badge className="bg-blue-500/20 text-blue-300 border border-blue-500/30">Info</Badge>
                     </div>
-                    <p className="text-sm text-blue-700">Traffic increased by 34% in the last hour</p>
+                    <p className="text-sm text-blue-200">Traffic increased by 34% in the last hour</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="glass-effect border-white/10">
               <CardHeader>
-                <CardTitle className="text-slate-800 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
+                <CardTitle className="text-white flex items-center">
+                  <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
                   Resolved Issues
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg opacity-75">
+                  <div className="p-3 bg-white/5 border border-white/10 rounded-lg opacity-75">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-medium text-gray-700">Database Connection Issue</h4>
-                      <Badge className="bg-gray-100 text-gray-600">Resolved</Badge>
+                      <h4 className="font-medium text-white/70">Database Connection Issue</h4>
+                      <Badge className="bg-white/10 text-white/60 border border-white/20">Resolved</Badge>
                     </div>
-                    <p className="text-sm text-gray-600">Connection restored after retry attempts</p>
+                    <p className="text-sm text-white/60">Connection restored after retry attempts</p>
                   </div>
                   
-                  <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg opacity-75">
+                  <div className="p-3 bg-white/5 border border-white/10 rounded-lg opacity-75">
                     <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-medium text-gray-700">Task Processing Delay</h4>
-                      <Badge className="bg-gray-100 text-gray-600">Resolved</Badge>
+                      <h4 className="font-medium text-white/70">Task Processing Delay</h4>
+                      <Badge className="bg-white/10 text-white/60 border border-white/20">Resolved</Badge>
                     </div>
-                    <p className="text-sm text-gray-600">Queue processed successfully, no backlog</p>
+                    <p className="text-sm text-white/60">Queue processed successfully, no backlog</p>
                   </div>
                 </div>
               </CardContent>
