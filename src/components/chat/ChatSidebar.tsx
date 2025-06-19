@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
 import { FileSpreadsheet, BarChart3, Lightbulb, Target } from "lucide-react";
