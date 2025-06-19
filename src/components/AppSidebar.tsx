@@ -42,19 +42,19 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
     <Sidebar className="border-r border-white/10 glass-effect">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-3 py-4">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-4 py-4 h-12">
             Marketing Analytics
           </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu className="space-y-2">
+          <SidebarGroupContent className="mt-4">
+            <SidebarMenu className="space-y-2 px-2">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     onClick={() => setActiveSection(item.id)}
-                    className={`w-full justify-start transition-all duration-200 rounded-lg mx-2 group relative overflow-hidden ${
+                    className={`w-full h-10 px-4 py-2 rounded-lg transition-all duration-200 group relative overflow-hidden ${
                       activeSection === item.id
-                        ? "bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-white font-medium border-l-3 border-teal-400 shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30"
-                        : "text-white/65 hover:text-white hover:bg-white/5 border-l-3 border-transparent"
+                        ? "bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-white font-semibold border-l-2 border-teal-400 shadow-lg shadow-teal-500/20"
+                        : "text-white/65 hover:text-white hover:bg-white/5 border-l-2 border-transparent font-medium"
                     }`}
                   >
                     {/* Glow effect for active item */}
@@ -62,18 +62,18 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
                       <div className="absolute inset-0 bg-gradient-to-r from-teal-400/10 to-blue-400/10 animate-pulse" />
                     )}
                     
-                    <item.icon className={`mr-3 h-5 w-5 relative z-10 ${
+                    <item.icon className={`w-5 h-5 relative z-10 flex-shrink-0 ${
                       activeSection === item.id ? 'text-teal-400' : 'text-white/65 group-hover:text-white'
                     }`} />
                     
                     {state !== "collapsed" && (
-                      <div className="flex flex-col items-start relative z-10">
-                        <span className={`font-medium ${
-                          activeSection === item.id ? 'text-white' : 'group-hover:text-white'
+                      <div className="flex flex-col items-start ml-3 relative z-10 min-w-0 flex-1">
+                        <span className={`text-sm leading-5 ${
+                          activeSection === item.id ? 'text-white font-semibold' : 'text-white/85 group-hover:text-white font-medium'
                         }`}>
                           {item.title}
                         </span>
-                        <span className={`text-xs transition-colors ${
+                        <span className={`text-xs leading-4 ${
                           activeSection === item.id 
                             ? 'text-white/75' 
                             : 'text-white/45 group-hover:text-white/65'
@@ -90,16 +90,16 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
         </SidebarGroup>
 
         <SidebarGroup className="mt-8">
-          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-3 py-4">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-4 py-4 h-12">
             System Status
           </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <div className="px-5 py-3 mx-2 rounded-lg bg-green-500/10 border border-green-500/20 hover:bg-green-500/15 transition-colors duration-200">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                <span className="text-sm text-green-400 font-medium">All Systems Active</span>
+          <SidebarGroupContent className="mt-4">
+            <div className="mx-2 px-4 py-3 rounded-lg bg-green-500/10 border border-green-500/20 hover:bg-green-500/15 transition-colors duration-200">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50 flex-shrink-0"></div>
+                <span className="text-sm font-semibold text-green-400 ml-2 leading-5">All Systems Active</span>
               </div>
-              <div className="text-xs text-green-400/70 mt-1">24 experiments running</div>
+              <div className="text-xs text-green-400/70 mt-1 ml-4 leading-4">24 experiments running</div>
             </div>
           </SidebarGroupContent>
         </SidebarGroup>
