@@ -212,7 +212,7 @@ export function ABTestManagement() {
           {["all", "running", "paused", "completed"].map((filter) => (
             <Button
               key={filter}
-              variant={selecte‌dFilter === filter ? "default" : "outline"}
+              variant={selectedFilter === filter ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedFilter(filter)}
               className={selectedFilter === filter 
