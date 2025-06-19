@@ -41,17 +41,17 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
   return (
     <Sidebar className="border-r border-white/10 glass-effect">
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-4 py-4 h-12">
+        <SidebarGroup className="px-4 pt-8 pb-0">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-0 py-0 h-auto mb-4">
             Marketing Analytics
           </SidebarGroupLabel>
-          <SidebarGroupContent className="mt-4">
-            <SidebarMenu className="space-y-2 px-2">
+          <SidebarGroupContent>
+            <SidebarMenu className="space-y-2">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     onClick={() => setActiveSection(item.id)}
-                    className={`w-full h-10 px-4 py-2 rounded-lg transition-all duration-200 group relative overflow-hidden ${
+                    className={`w-full h-10 px-4 py-0 rounded-lg transition-all duration-200 group relative overflow-hidden ${
                       activeSection === item.id
                         ? "bg-gradient-to-r from-teal-500/20 to-blue-500/20 text-white font-semibold border-l-2 border-teal-400 shadow-lg shadow-teal-500/20"
                         : "text-white/65 hover:text-white hover:bg-white/5 border-l-2 border-transparent font-medium"
@@ -89,17 +89,17 @@ export function AppSidebar({ activeSection, setActiveSection }: AppSidebarProps)
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup className="mt-8">
-          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-4 py-4 h-12">
+        <SidebarGroup className="px-4 pt-8 pb-4">
+          <SidebarGroupLabel className="text-white/75 font-semibold text-xs uppercase tracking-wider px-0 py-0 h-auto mb-4">
             System Status
           </SidebarGroupLabel>
-          <SidebarGroupContent className="mt-4">
-            <div className="mx-2 px-4 py-3 rounded-lg bg-green-500/10 border border-green-500/20 hover:bg-green-500/15 transition-colors duration-200">
+          <SidebarGroupContent>
+            <div className="px-4 py-3 rounded-lg bg-green-500/10 border border-green-500/20 hover:bg-green-500/15 transition-colors duration-200">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50 flex-shrink-0"></div>
-                <span className="text-sm font-semibold text-green-400 ml-2 leading-5">All Systems Active</span>
+                <span className="text-sm font-semibold text-green-400 ml-3 leading-5">All Systems Active</span>
               </div>
-              <div className="text-xs text-green-400/70 mt-1 ml-4 leading-4">24 experiments running</div>
+              <div className="text-xs text-green-400/70 mt-1 ml-5 leading-4">24 experiments running</div>
             </div>
           </SidebarGroupContent>
         </SidebarGroup>
