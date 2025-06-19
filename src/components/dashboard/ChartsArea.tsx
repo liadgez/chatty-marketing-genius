@@ -2,6 +2,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, AreaChart, Area } from "recharts";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useState, useEffect } from "react";
 
 const testPerformanceData = [
   { name: "Test A", value: 4.2 },
@@ -27,7 +29,48 @@ const chartConfig = {
   },
 };
 
+function ChartSkeleton() {
+  return (
+    <Card className="glass-effect border-white/10 bg-black/20">
+      <CardHeader>
+        <Skeleton className="h-6 w-40 bg-white/20" />
+      </CardHeader>
+      <CardContent>
+        <div className="h-80 space-y-4">
+          <Skeleton className="h-64 w-full bg-white/20" />
+          <div className="flex justify-between">
+            <Skeleton className="h-4 w-12 bg-white/20" />
+            <Skeleton className="h-4 w-12 bg-white/20" />
+            <Skeleton className="h-4 w-12 bg-white/20" />
+            <Skeleton className="h-4 w-12 bg-white/20" />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 export function ChartsArea() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate chart data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ChartSkeleton />
+        <ChartSkeleton />
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Bar Chart */}
