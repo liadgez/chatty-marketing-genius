@@ -162,46 +162,6 @@ export const useChatHandlers = ({
     }, 1400);
   };
 
-  const processAnalysisMode = async (userInput: string) => {
-    if (chatStep.step === "idle") {
-      // Start sheet discovery
-      setChatStep({ step: "sheet-discovery" });
-      
-      setTimeout(() => {
-        addMessage({
-          type: "assistant",
-          content: `I found ${mockSheets.length} data sheets that might be relevant to your query. Here are your options:\n\n${mockSheets.map((sheet, i) => `${i + 1}. ${sheet}`).join('\n')}\n\nPlease type the number of the sheet you'd like to analyze, or ask me to search for something specific.`,
-          category: "system"
-        });
-        setChatStep({ step: "sheet-selection", data: { sheets: mockSheets } });
-        setIsLoading(false);
-      }, 1500);
-    } else if (chatStep.step === "sheet-selection") {
-      const sheetIndex = parseInt(userInput) - 1;
-      if (sheetIndex >= 0 && sheetIndex < mockSheets.length) {
-        const selectedSheet = mockSheets[sheetIndex];
-        setChatStep({ step: "data-search", data: { selectedSheet } });
-        
-        setTimeout(() => {
-          addMessage({
-            type: "assistant",
-            content: `Analyzing "${selectedSheet}"...\n\n📊 Key Insights Found:\n• Performance trend: +23% improvement over last period\n• Top performing segment: Mobile users (34% conversion rate)\n• Optimization opportunity: Desktop experience needs attention\n• Recommended action: A/B test new mobile-first design\n\nWould you like me to dive deeper into any of these insights?`,
-            category: "task"
-          });
-          setChatStep({ step: "idle" });
-          setIsLoading(false);
-        }, 2000);
-      } else {
-        addMessage({
-          type: "assistant",
-          content: "Please enter a valid sheet number (1-5) or describe what you're looking for.",
-          category: "system"
-        });
-        setIsLoading(false);
-      }
-    }
-  };
-
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return;
     
