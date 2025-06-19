@@ -1,3 +1,4 @@
+
 import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
 import { FileSpreadsheet } from "lucide-react";
 
@@ -17,7 +18,7 @@ export function ChatSidebar() {
       </SidebarHeader>
       
       <SidebarContent className="p-4">
-        
+        {/* Content area is intentionally empty */}
       </SidebarContent>
     </Sidebar>
   );
