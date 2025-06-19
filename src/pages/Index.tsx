@@ -10,7 +10,7 @@ import { AgentManagement } from "@/components/AgentManagement";
 import { SystemMonitoring } from "@/components/SystemMonitoring";
 import { GeneratedOutputs } from "@/components/GeneratedOutputs";
 import { ChatInterface } from "@/components/ChatInterface";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, FileSpreadsheet } from "lucide-react";
 
 // Import new components we'll create
 import { ABTestManagement } from "@/components/ABTestManagement";
@@ -122,7 +122,22 @@ const Index = () => {
             
             {/* Chat Interface - Always Visible */}
             <div className="w-96 glass-effect border-l border-white/10 flex flex-col">
-              <ChatInterface />
+              {/* TerrificAI Branding at top of chat */}
+              <div className="p-6 border-b border-white/10">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <FileSpreadsheet className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="font-semibold text-white">TerrificAI</h2>
+                    <p className="text-xs text-white/65">Marketing Assistant</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex-1">
+                <ChatInterface />
+              </div>
             </div>
           </main>
         </div>
