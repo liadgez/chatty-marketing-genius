@@ -55,11 +55,8 @@ export function ChatInterface() {
   const handleValidatedSendMessage = () => {
     const { isValid, sanitizedInput } = validateAndSanitize(input);
     
-    if (!isValid) {
-      return;
-    }
+    if (!isValid) return;
 
-    // Update input with sanitized version if different
     if (sanitizedInput !== input) {
       setInput(sanitizedInput);
     }
@@ -69,7 +66,6 @@ export function ChatInterface() {
 
   const handleInputChange = (value: string) => {
     setInput(value);
-    // Clear validation error when user starts typing
     if (validationError) {
       clearValidationError();
     }
@@ -85,35 +81,14 @@ export function ChatInterface() {
     if (!currentMode) {
       return "Please select a mode above to start chatting...";
     }
-    
-    switch (chatStep.step) {
-      case "sheet-selection":
-        return "Enter the number of the sheet you want to analyze...";
-      case "data-search":
-        return "Describe what data you're looking for...";
-      default:
-        return `Ask me anything in ${currentMode} mode...`;
-    }
-  };
-
-  const getLoadingMessage = () => {
-    switch (chatStep.step) {
-      case "sheet-discovery":
-        return "Discovering available data sheets...";
-      case "action-processing":
-        return "Processing your quick action...";
-      case "processing":
-        return "Processing your request...";
-      default:
-        return currentMode === "analysis" ? "Analyzing data..." : "AI is thinking...";
-    }
+    return `Ask me anything in ${currentMode} mode...`;
   };
 
   return (
     <ChatErrorBoundary onRetry={() => window.location.reload()}>
       <div className="h-full flex flex-col bg-transparent">
         {/* Chat Header */}
-        <div className="shrink-0 h-16 glass-effect border-b border-white/10 flex items-center px-6 backdrop-blur-xl">
+        <div className="shrink-0 h-16 glass-effect border-b border-white/10 flex items-center px-6">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
               <Bot className="w-5 h-5 text-white" />
@@ -135,14 +110,14 @@ export function ChatInterface() {
             ))}
             {isLoading && (
               <EnhancedLoadingIndicator 
-                message={getLoadingMessage()}
+                message="Processing your request..."
                 showDots={true}
               />
             )}
           </div>
         </ScrollArea>
 
-        {/* Mode Selector - Always visible above actions */}
+        {/* Mode Selector */}
         <div className="shrink-0 px-6 pb-4 bg-transparent">
           <ModeSelector 
             currentMode={currentMode}
@@ -151,7 +126,7 @@ export function ChatInterface() {
           />
         </div>
 
-        {/* Action Buttons Bar - Only show when mode is selected */}
+        {/* Action Buttons Bar */}
         {currentMode && (
           <div className="shrink-0">
             <ActionButtonsBar 

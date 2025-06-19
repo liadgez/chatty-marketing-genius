@@ -18,42 +18,12 @@ interface ActionButtonsBarProps {
 }
 
 const actionButtons = [
-  {
-    id: 'charts' as ActionType,
-    label: 'Charts',
-    icon: BarChart3,
-    description: 'Generate charts and visualizations'
-  },
-  {
-    id: 'draft-email' as ActionType,
-    label: 'Draft Email',
-    icon: Mail,
-    description: 'Create email drafts'
-  },
-  {
-    id: 'tables' as ActionType,
-    label: 'Tables',
-    icon: Table,
-    description: 'Create data tables'
-  },
-  {
-    id: 'mind-map' as ActionType,
-    label: 'Mind Map',
-    icon: Brain,
-    description: 'Generate mind maps'
-  },
-  {
-    id: 'action-items' as ActionType,
-    label: 'Action Items',
-    icon: ListChecks,
-    description: 'Extract action items'
-  },
-  {
-    id: 'run' as ActionType,
-    label: 'Run',
-    icon: Play,
-    description: 'Execute analysis'
-  }
+  { id: 'charts' as ActionType, label: 'Charts', icon: BarChart3 },
+  { id: 'draft-email' as ActionType, label: 'Draft Email', icon: Mail },
+  { id: 'tables' as ActionType, label: 'Tables', icon: Table },
+  { id: 'mind-map' as ActionType, label: 'Mind Map', icon: Brain },
+  { id: 'action-items' as ActionType, label: 'Action Items', icon: ListChecks },
+  { id: 'run' as ActionType, label: 'Run', icon: Play }
 ];
 
 export const ActionButtonsBar: React.FC<ActionButtonsBarProps> = ({ 
@@ -62,10 +32,7 @@ export const ActionButtonsBar: React.FC<ActionButtonsBarProps> = ({
 }) => {
   return (
     <div className="glass-effect border border-white/10 rounded-lg p-4 mx-6 mb-4">
-      <div className="flex items-center justify-between mb-3">
-        <h4 className="text-sm font-medium text-white/80">Quick Actions</h4>
-        <span className="text-xs text-white/50">Select an action to get started</span>
-      </div>
+      <h4 className="text-sm font-medium text-white/80 mb-3">Quick Actions</h4>
       
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
         {actionButtons.map((action) => {
@@ -77,10 +44,9 @@ export const ActionButtonsBar: React.FC<ActionButtonsBarProps> = ({
               size="sm"
               onClick={() => onActionSelect(action.id)}
               disabled={disabled}
-              className="h-auto p-3 flex flex-col items-center space-y-2 text-white/70 hover:text-white hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all duration-200 group"
-              title={action.description}
+              className="h-auto p-3 flex flex-col items-center space-y-2 text-white/70 hover:text-white hover:bg-white/10 border border-white/5 hover:border-white/20 transition-colors"
             >
-              <IconComponent className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+              <IconComponent className="w-4 h-4" />
               <span className="text-xs font-medium">{action.label}</span>
             </Button>
           );

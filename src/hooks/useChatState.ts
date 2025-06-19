@@ -6,14 +6,12 @@ export interface Message {
   type: "user" | "assistant";
   content: string;
   timestamp: Date;
-  category?: "task" | "anomaly" | "system" | "general" | "action";
 }
 
 export type ChatMode = "analysis" | "creative" | "strategy" | null;
-export type ActionType = 'charts' | 'draft-email' | 'tables' | 'mind-map' | 'action-items' | 'run';
 
 export interface ChatStep {
-  step: "idle" | "mode-selection" | "processing" | "sheet-discovery" | "sheet-selection" | "data-search" | "action-processing";
+  step: "idle" | "mode-selection" | "processing";
   data?: any;
 }
 
@@ -24,7 +22,6 @@ export const useChatState = () => {
       type: "assistant",
       content: "Welcome to TerrificMarketingAI! I'm here to help you with data analysis, creative suggestions, and strategic recommendations. Please select a mode to get started:",
       timestamp: new Date(),
-      category: "general"
     }
   ]);
   
