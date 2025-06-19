@@ -85,7 +85,7 @@ export function MetricCards() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
         {Array.from({ length: 4 }).map((_, index) => (
           <SkeletonCard key={index} />
         ))}
@@ -98,7 +98,7 @@ export function MetricCards() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
       {metrics.map((metric) => (
         <Card 
           key={metric.id}
@@ -111,28 +111,28 @@ export function MetricCards() {
           onClick={() => handleMetricClick(metric.id, metric.action)}
           onKeyDown={(e) => handleKeyDown(e, metric.id, metric.action)}
         >
-          <CardContent className="p-4 sm:p-6 md:p-6 lg:p-8">
-            <div className="flex items-start justify-between space-x-3 sm:space-x-4">
+          <CardContent className="p-6 md:p-7 lg:p-8">
+            <div className="flex items-start justify-between space-x-4 md:space-x-5">
               <div className="flex-1 min-w-0">
-                <p className="text-xs sm:text-sm text-white/70 font-medium mb-2 sm:mb-3 truncate">{metric.title}</p>
-                <p className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-3 sm:mb-4 group-hover:text-blue-300 transition-colors duration-300">
+                <p className="text-sm md:text-base text-white/70 font-medium mb-3 md:mb-4 truncate">{metric.title}</p>
+                <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 md:mb-5 group-hover:text-blue-300 transition-colors duration-300">
                   {metric.value}
                 </p>
                 <div className="flex items-center justify-between">
-                  <p className={`text-xs sm:text-sm font-semibold ${
+                  <p className={`text-sm md:text-base font-semibold ${
                     metric.changeType === 'positive' ? 'text-green-400' : 'text-red-400'
                   }`}>
                     {metric.change}
                   </p>
                 </div>
-                <p className="text-xs text-white/50 mt-1 sm:mt-2">
+                <p className="text-xs md:text-sm text-white/50 mt-2 md:mt-3">
                   {metric.description}
                 </p>
               </div>
-              <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-300 shrink-0 ${
+              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-xl flex items-center justify-center group-hover:from-blue-600/30 group-hover:to-purple-600/30 transition-all duration-300 shrink-0 ${
                 selectedMetric === metric.id ? 'from-blue-600/40 to-purple-600/40 scale-110' : ''
               }`}>
-                <metric.icon className={`w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-7 lg:h-7 text-blue-400 group-hover:text-blue-300 transition-all duration-300 ${
+                <metric.icon className={`w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-blue-400 group-hover:text-blue-300 transition-all duration-300 ${
                   selectedMetric === metric.id ? 'scale-110' : ''
                 }`} aria-hidden="true" />
               </div>

@@ -78,45 +78,45 @@ const Index = () => {
         
         <div className="flex-1 flex flex-col">
           {/* Enhanced Header with breadcrumbs and stats */}
-          <header className="h-14 sm:h-16 md:h-16 lg:h-20 glass-effect border-b border-white/10 flex items-center px-3 sm:px-4 sm:px-6 md:px-6 lg:px-8 backdrop-blur-xl">
-            <SidebarTrigger className="mr-2 sm:mr-3 md:mr-3 lg:mr-6 text-white hover:bg-white/10 hover:text-blue-400 transition-colors p-2 rounded-lg" />
+          <header className="h-16 md:h-18 lg:h-20 glass-effect border-b border-white/10 flex items-center px-4 md:px-8 lg:px-12 backdrop-blur-xl">
+            <SidebarTrigger className="mr-3 md:mr-6 lg:mr-8 text-white hover:bg-white/10 hover:text-blue-400 transition-colors p-2 rounded-lg" />
             
             {/* Breadcrumb */}
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
-              <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent truncate">
+            <div className="flex items-center space-x-2 md:space-x-4 flex-1 min-w-0">
+              <h1 className="text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent truncate">
                 TerrificMarketingAI
               </h1>
-              <span className="text-white/50 hidden sm:inline text-sm sm:text-lg">/</span>
-              <span className="text-white/85 font-semibold hidden sm:inline truncate text-sm sm:text-base md:text-base lg:text-lg">{getSectionTitle()}</span>
+              <span className="text-white/50 hidden sm:inline text-lg md:text-xl">/</span>
+              <span className="text-white/85 font-semibold hidden sm:inline truncate text-base md:text-lg lg:text-xl">{getSectionTitle()}</span>
             </div>
 
             {/* Stats Cluster - Hidden on mobile and small tablets */}
-            <div className="hidden md:hidden lg:flex items-center space-x-4 lg:space-x-8">
-              <div className="flex items-center space-x-4 lg:space-x-8 text-sm">
-                <div className="flex items-center space-x-2 lg:space-x-3">
-                  <span className="text-white font-semibold text-base lg:text-lg">24</span>
-                  <span className="text-white/70 text-sm">Active Tests</span>
+            <div className="hidden lg:flex items-center space-x-8 xl:space-x-12">
+              <div className="flex items-center space-x-8 xl:space-x-12 text-sm">
+                <div className="flex items-center space-x-3 xl:space-x-4">
+                  <span className="text-white font-semibold text-lg xl:text-xl">24</span>
+                  <span className="text-white/70 text-sm xl:text-base">Active Tests</span>
                 </div>
-                <div className="w-1 h-4 lg:h-6 bg-white/20 rounded"></div>
-                <div className="flex items-center space-x-2 lg:space-x-3">
-                  <span className="text-white font-semibold text-base lg:text-lg">4.2×</span>
-                  <span className="text-white/70 text-sm">Avg ROAS</span>
+                <div className="w-1 h-6 xl:h-8 bg-white/20 rounded"></div>
+                <div className="flex items-center space-x-3 xl:space-x-4">
+                  <span className="text-white font-semibold text-lg xl:text-xl">4.2×</span>
+                  <span className="text-white/70 text-sm xl:text-base">Avg ROAS</span>
                 </div>
-                <div className="w-1 h-4 lg:h-6 bg-white/20 rounded"></div>
-                <div className="flex items-center space-x-2 lg:space-x-3">
-                  <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                  <span className="text-green-400 font-semibold text-sm">System Active</span>
+                <div className="w-1 h-6 xl:h-8 bg-white/20 rounded"></div>
+                <div className="flex items-center space-x-3 xl:space-x-4">
+                  <div className="w-3 h-3 xl:w-4 xl:h-4 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
+                  <span className="text-green-400 font-semibold text-sm xl:text-base">System Active</span>
                 </div>
               </div>
               
               {/* Manual Refresh Button */}
-              <button className="p-2 lg:p-3 rounded-xl text-white/65 hover:text-white hover:bg-white/10 transition-all duration-300 group">
-                <RefreshCw className="w-4 h-4 lg:w-5 lg:h-5 group-hover:rotate-180 transition-transform duration-500" />
+              <button className="p-3 xl:p-4 rounded-xl text-white/65 hover:text-white hover:bg-white/10 transition-all duration-300 group">
+                <RefreshCw className="w-5 h-5 xl:w-6 xl:h-6 group-hover:rotate-180 transition-transform duration-500" />
               </button>
             </div>
 
             {/* Mobile Actions */}
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="flex items-center space-x-3 md:space-x-4">
               <ThemeToggle />
               
               {/* Mobile Chat Toggle */}
@@ -125,10 +125,10 @@ const Index = () => {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsChatOpen(!isChatOpen)}
-                  className="text-white hover:bg-white/10 lg:hidden p-2 sm:p-3 rounded-xl"
+                  className="text-white hover:bg-white/10 lg:hidden p-3 md:p-4 rounded-xl"
                   aria-label="Toggle chat"
                 >
-                  {isChatOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />}
+                  {isChatOpen ? <X className="w-5 h-5 md:w-6 md:h-6" /> : <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />}
                 </Button>
               )}
             </div>
@@ -145,31 +145,31 @@ const Index = () => {
             {/* Chat Interface - Responsive behavior */}
             <div className={`
               ${isMobile 
-                ? `fixed inset-0 top-14 sm:top-16 md:top-16 lg:top-20 z-50 transition-transform duration-300 ${
+                ? `fixed inset-0 top-16 md:top-18 lg:top-20 z-50 transition-transform duration-300 ${
                     isChatOpen ? 'translate-x-0' : 'translate-x-full'
                   }`
-                : 'w-80 sm:w-96 md:w-80 lg:w-96 xl:w-[28rem] relative'
+                : 'w-80 md:w-96 lg:w-[28rem] xl:w-[32rem] relative'
               }
               glass-effect border-l border-white/10 flex flex-col bg-white/5 backdrop-blur-xl shadow-2xl
             `}>
               {/* TerrificAI Branding at top of chat */}
-              <div className="p-4 sm:p-6 md:p-6 lg:p-8 border-b border-white/10">
-                <div className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <FileSpreadsheet className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              <div className="p-6 md:p-8 lg:p-10 border-b border-white/10">
+                <div className="flex items-center space-x-4 md:space-x-5">
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <FileSpreadsheet className="w-6 h-6 md:w-7 md:h-7 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h2 className="font-bold text-white truncate text-base sm:text-lg">TerrificAI</h2>
-                    <p className="text-xs sm:text-sm text-white/70 truncate">Marketing Assistant</p>
+                    <h2 className="font-bold text-white truncate text-lg md:text-xl">TerrificAI</h2>
+                    <p className="text-sm md:text-base text-white/70 truncate">Marketing Assistant</p>
                   </div>
                   {isMobile && (
                     <Button
                       variant="ghost"
                       size="icon"
                       onClick={() => setIsChatOpen(false)}
-                      className="text-white/65 hover:text-white hover:bg-white/10 shrink-0 p-1 sm:p-2 rounded-lg"
+                      className="text-white/65 hover:text-white hover:bg-white/10 shrink-0 p-2 md:p-3 rounded-lg"
                     >
-                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <X className="w-5 h-5 md:w-6 md:h-6" />
                     </Button>
                   )}
                 </div>

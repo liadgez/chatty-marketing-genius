@@ -74,7 +74,7 @@ export function ChartsArea() {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
         <ChartSkeleton />
         <ChartSkeleton />
       </div>
@@ -83,7 +83,7 @@ export function ChartsArea() {
 
   if (!hasData) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
         <EmptyState type="tests" onAction={handleCreateTest} />
         <EmptyState type="analytics" onAction={handleViewGuide} />
       </div>
@@ -91,14 +91,14 @@ export function ChartsArea() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
       {/* Bar Chart */}
       <Card className="glass-effect border-white/10 bg-white/10 rounded-xl shadow-lg backdrop-blur-md hover:border-white/20 transition-all duration-300">
-        <CardHeader className="p-4 sm:p-6 md:p-6 lg:p-8 pb-2 sm:pb-4">
-          <CardTitle className="text-white font-semibold text-base sm:text-lg md:text-lg lg:text-xl">A/B Test Performance</CardTitle>
+        <CardHeader className="p-6 md:p-7 lg:p-8 pb-3 md:pb-4">
+          <CardTitle className="text-white font-semibold text-lg md:text-xl lg:text-2xl">A/B Test Performance</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 sm:p-6 md:p-6 lg:p-8 pt-0">
-          <div className="h-48 sm:h-64 md:h-64 lg:h-80 w-full">
+        <CardContent className="p-6 md:p-7 lg:p-8 pt-0">
+          <div className="h-64 md:h-72 lg:h-80 w-full">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart 
@@ -107,15 +107,15 @@ export function ChartsArea() {
                 >
                   <XAxis 
                     dataKey="name" 
-                    tick={{ fill: '#ffffff99', fontSize: 10 }}
+                    tick={{ fill: '#ffffff99', fontSize: 11 }}
                     axisLine={{ stroke: '#ffffff20' }}
                     tickLine={{ stroke: '#ffffff20' }}
                   />
                   <YAxis 
-                    tick={{ fill: '#ffffff99', fontSize: 10 }}
+                    tick={{ fill: '#ffffff99', fontSize: 11 }}
                     axisLine={{ stroke: '#ffffff20' }}
                     tickLine={{ stroke: '#ffffff20' }}
-                    width={30}
+                    width={35}
                   />
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Bar 
@@ -139,11 +139,11 @@ export function ChartsArea() {
 
       {/* Area Chart */}
       <Card className="glass-effect border-white/10 bg-white/10 rounded-xl shadow-lg backdrop-blur-md hover:border-white/20 transition-all duration-300">
-        <CardHeader className="p-4 sm:p-6 md:p-6 lg:p-8 pb-2 sm:pb-4">
-          <CardTitle className="text-white font-semibold text-base sm:text-lg md:text-lg lg:text-xl">Real-time Conversions</CardTitle>
+        <CardHeader className="p-6 md:p-7 lg:p-8 pb-3 md:pb-4">
+          <CardTitle className="text-white font-semibold text-lg md:text-xl lg:text-2xl">Real-time Conversions</CardTitle>
         </CardHeader>
-        <CardContent className="p-4 sm:p-6 md:p-6 lg:p-8 pt-0">
-          <div className="h-48 sm:h-64 md:h-64 lg:h-80 w-full">
+        <CardContent className="p-6 md:p-7 lg:p-8 pt-0">
+          <div className="h-64 md:h-72 lg:h-80 w-full">
             <ChartContainer config={chartConfig} className="h-full w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart 
@@ -152,15 +152,15 @@ export function ChartsArea() {
                 >
                   <XAxis 
                     dataKey="time" 
-                    tick={{ fill: '#ffffff99', fontSize: 10 }}
+                    tick={{ fill: '#ffffff99', fontSize: 11 }}
                     axisLine={{ stroke: '#ffffff20' }}
                     tickLine={{ stroke: '#ffffff20' }}
                   />
                   <YAxis 
-                    tick={{ fill: '#ffffff99', fontSize: 10 }}
+                    tick={{ fill: '#ffffff99', fontSize: 11 }}
                     axisLine={{ stroke: '#ffffff20' }}
                     tickLine={{ stroke: '#ffffff20' }}
-                    width={30}
+                    width={35}
                   />
                   <ChartTooltip content={<ChartTooltipContent />} />
                   <Area 
