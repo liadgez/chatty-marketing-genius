@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, AreaChart, Area } from "recharts";
 import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState } from "./EmptyState";
 import { useState, useEffect } from "react";
 
 const testPerformanceData = [
@@ -52,21 +53,43 @@ function ChartSkeleton() {
 
 export function ChartsArea() {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasData, setHasData] = useState(true); // Toggle this to test empty state
 
   useEffect(() => {
     // Simulate chart data loading
     const timer = setTimeout(() => {
       setIsLoading(false);
+      // Simulate empty state - set to false to test empty state
+      setHasData(true);
     }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleCreateTest = () => {
+    console.log("Creating new test from charts area...");
+    // Future: Add actual test creation logic
+  };
+
+  const handleViewGuide = () => {
+    console.log("Opening test setup guide...");
+    // Future: Add guide navigation logic
+  };
 
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
         <ChartSkeleton />
         <ChartSkeleton />
+      </div>
+    );
+  }
+
+  if (!hasData) {
+    return (
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 md:gap-6">
+        <EmptyState type="tests" onAction={handleCreateTest} />
+        <EmptyState type="analytics" onAction={handleViewGuide} />
       </div>
     );
   }

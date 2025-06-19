@@ -2,6 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Activity, Target, CheckCircle } from "lucide-react";
 import { SkeletonCard } from "@/components/ui/skeleton-card";
+import { EmptyMetricCards } from "./EmptyMetricCards";
 import { useState, useEffect } from "react";
 
 const metrics = [
@@ -50,11 +51,14 @@ const metrics = [
 export function MetricCards() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
+  const [hasData, setHasData] = useState(true); // Toggle this to test empty state
 
   useEffect(() => {
     // Simulate data loading
     const timer = setTimeout(() => {
       setIsLoading(false);
+      // Simulate empty state - set to false to test empty state
+      setHasData(true);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -80,6 +84,11 @@ export function MetricCards() {
     }
   };
 
+  const handleCreateExperiment = () => {
+    console.log("Creating first experiment...");
+    // Future: Add actual experiment creation logic
+  };
+
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -88,6 +97,10 @@ export function MetricCards() {
         ))}
       </div>
     );
+  }
+
+  if (!hasData) {
+    return <EmptyMetricCards onCreateExperiment={handleCreateExperiment} />;
   }
 
   return (
