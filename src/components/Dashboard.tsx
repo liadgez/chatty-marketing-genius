@@ -58,7 +58,7 @@ export function Dashboard() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-white/75">Total Experiments</CardTitle>
@@ -74,7 +74,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-white/75">Active Tests</CardTitle>
@@ -88,7 +88,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-white/75">Avg ROAS</CardTitle>
@@ -101,7 +101,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-medium text-white/75">Completed Tests</CardTitle>
@@ -117,7 +117,7 @@ export function Dashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <BarChart className="h-5 w-5 mr-2 text-blue-400" />
@@ -145,7 +145,7 @@ export function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardHeader>
             <CardTitle className="text-white flex items-center">
               <TrendingUp className="h-5 w-5 mr-2 text-emerald-400" />
@@ -175,7 +175,7 @@ export function Dashboard() {
       </div>
 
       {/* Active Experiments */}
-      <Card className="glass-effect border-white/10">
+      <Card className="card-gradient">
         <CardHeader>
           <CardTitle className="text-white flex items-center justify-between">
             <span className="flex items-center">

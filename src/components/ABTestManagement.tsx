@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -136,7 +135,7 @@ export function ABTestManagement() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardContent className="p-6">
             <div className="flex items-center space-x-4">
               <div className="p-3 rounded-lg bg-blue-500/10">
@@ -150,7 +149,7 @@ export function ABTestManagement() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardContent className="p-6">
             <div className="flex items-center space-x-4">
               <div className="p-3 rounded-lg bg-green-500/10">
@@ -166,7 +165,7 @@ export function ABTestManagement() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardContent className="p-6">
             <div className="flex items-center space-x-4">
               <div className="p-3 rounded-lg bg-yellow-500/10">
@@ -182,7 +181,7 @@ export function ABTestManagement() {
           </CardContent>
         </Card>
 
-        <Card className="glass-effect border-white/10">
+        <Card className="card-gradient">
           <CardContent className="p-6">
             <div className="flex items-center space-x-4">
               <div className="p-3 rounded-lg bg-purple-500/10">
@@ -229,7 +228,7 @@ export function ABTestManagement() {
       {/* Experiments List */}
       <div className="space-y-6">
         {filteredExperiments.map((experiment) => (
-          <Card key={experiment.id} className="glass-effect border-white/10 hover:border-white/20 transition-all">
+          <Card key={experiment.id} className="card-gradient hover:border-white/20 transition-all">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
